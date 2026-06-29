@@ -23,6 +23,7 @@ import { Route as AuthRegisterRouteImport } from './routes/auth.register'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
 import { Route as Auth2faRouteImport } from './routes/auth.2fa'
+import { Route as AppPaymentsRouteImport } from './routes/app.payments'
 import { Route as AppDocumentsRouteImport } from './routes/app.documents'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
 import { Route as AppApplicationsIndexRouteImport } from './routes/app.applications.index'
@@ -98,6 +99,11 @@ const Auth2faRoute = Auth2faRouteImport.update({
   path: '/2fa',
   getParentRoute: () => AuthRoute,
 } as any)
+const AppPaymentsRoute = AppPaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDocumentsRoute = AppDocumentsRouteImport.update({
   id: '/documents',
   path: '/documents',
@@ -130,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/licensing': typeof LicensingRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/documents': typeof AppDocumentsRoute
+  '/app/payments': typeof AppPaymentsRoute
   '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -150,6 +157,7 @@ export interface FileRoutesByTo {
   '/licensing': typeof LicensingRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/documents': typeof AppDocumentsRoute
+  '/app/payments': typeof AppPaymentsRoute
   '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -171,6 +179,7 @@ export interface FileRoutesById {
   '/licensing': typeof LicensingRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/documents': typeof AppDocumentsRoute
+  '/app/payments': typeof AppPaymentsRoute
   '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -193,6 +202,7 @@ export interface FileRouteTypes {
     | '/licensing'
     | '/app/dashboard'
     | '/app/documents'
+    | '/app/payments'
     | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
@@ -213,6 +223,7 @@ export interface FileRouteTypes {
     | '/licensing'
     | '/app/dashboard'
     | '/app/documents'
+    | '/app/payments'
     | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
@@ -233,6 +244,7 @@ export interface FileRouteTypes {
     | '/licensing'
     | '/app/dashboard'
     | '/app/documents'
+    | '/app/payments'
     | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
@@ -354,6 +366,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Auth2faRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/app/payments': {
+      id: '/app/payments'
+      path: '/payments'
+      fullPath: '/app/payments'
+      preLoaderRoute: typeof AppPaymentsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/documents': {
       id: '/app/documents'
       path: '/documents'
@@ -388,6 +407,7 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppDocumentsRoute: typeof AppDocumentsRoute
+  AppPaymentsRoute: typeof AppPaymentsRoute
   AppApplicationsNewRoute: typeof AppApplicationsNewRoute
   AppApplicationsIndexRoute: typeof AppApplicationsIndexRoute
 }
@@ -395,6 +415,7 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppDocumentsRoute: AppDocumentsRoute,
+  AppPaymentsRoute: AppPaymentsRoute,
   AppApplicationsNewRoute: AppApplicationsNewRoute,
   AppApplicationsIndexRoute: AppApplicationsIndexRoute,
 }
