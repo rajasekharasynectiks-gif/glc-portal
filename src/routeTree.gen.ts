@@ -21,6 +21,7 @@ import { Route as AuthResetRouteImport } from './routes/auth.reset'
 import { Route as AuthRegisterRouteImport } from './routes/auth.register'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
+import { Route as Auth2faRouteImport } from './routes/auth.2fa'
 
 const LicensingRoute = LicensingRouteImport.update({
   id: '/licensing',
@@ -82,6 +83,11 @@ const AuthForgotRoute = AuthForgotRouteImport.update({
   path: '/forgot',
   getParentRoute: () => AuthRoute,
 } as any)
+const Auth2faRoute = Auth2faRouteImport.update({
+  id: '/2fa',
+  path: '/2fa',
+  getParentRoute: () => AuthRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/documents': typeof DocumentsRoute
   '/faq': typeof FaqRoute
   '/licensing': typeof LicensingRoute
+  '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByTo {
   '/documents': typeof DocumentsRoute
   '/faq': typeof FaqRoute
   '/licensing': typeof LicensingRoute
+  '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
@@ -120,6 +128,7 @@ export interface FileRoutesById {
   '/documents': typeof DocumentsRoute
   '/faq': typeof FaqRoute
   '/licensing': typeof LicensingRoute
+  '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
@@ -136,6 +145,7 @@ export interface FileRouteTypes {
     | '/documents'
     | '/faq'
     | '/licensing'
+    | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
     | '/auth/register'
@@ -150,6 +160,7 @@ export interface FileRouteTypes {
     | '/documents'
     | '/faq'
     | '/licensing'
+    | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
     | '/auth/register'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/documents'
     | '/faq'
     | '/licensing'
+    | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
     | '/auth/register'
@@ -267,10 +279,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthForgotRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/auth/2fa': {
+      id: '/auth/2fa'
+      path: '/2fa'
+      fullPath: '/auth/2fa'
+      preLoaderRoute: typeof Auth2faRouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
 
 interface AuthRouteChildren {
+  Auth2faRoute: typeof Auth2faRoute
   AuthForgotRoute: typeof AuthForgotRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
@@ -279,6 +299,7 @@ interface AuthRouteChildren {
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
+  Auth2faRoute: Auth2faRoute,
   AuthForgotRoute: AuthForgotRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
