@@ -23,6 +23,7 @@ import { Route as AuthRegisterRouteImport } from './routes/auth.register'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
 import { Route as Auth2faRouteImport } from './routes/auth.2fa'
+import { Route as AppDocumentsRouteImport } from './routes/app.documents'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
 import { Route as AppApplicationsIndexRouteImport } from './routes/app.applications.index'
 import { Route as AppApplicationsNewRouteImport } from './routes/app.applications.new'
@@ -97,6 +98,11 @@ const Auth2faRoute = Auth2faRouteImport.update({
   path: '/2fa',
   getParentRoute: () => AuthRoute,
 } as any)
+const AppDocumentsRoute = AppDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/licensing': typeof LicensingRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/documents': typeof AppDocumentsRoute
   '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/licensing': typeof LicensingRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/documents': typeof AppDocumentsRoute
   '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -162,6 +170,7 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/licensing': typeof LicensingRoute
   '/app/dashboard': typeof AppDashboardRoute
+  '/app/documents': typeof AppDocumentsRoute
   '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -183,6 +192,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/licensing'
     | '/app/dashboard'
+    | '/app/documents'
     | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
@@ -202,6 +212,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/licensing'
     | '/app/dashboard'
+    | '/app/documents'
     | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
@@ -221,6 +232,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/licensing'
     | '/app/dashboard'
+    | '/app/documents'
     | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
@@ -342,6 +354,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Auth2faRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/app/documents': {
+      id: '/app/documents'
+      path: '/documents'
+      fullPath: '/app/documents'
+      preLoaderRoute: typeof AppDocumentsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/dashboard': {
       id: '/app/dashboard'
       path: '/dashboard'
@@ -368,12 +387,14 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
+  AppDocumentsRoute: typeof AppDocumentsRoute
   AppApplicationsNewRoute: typeof AppApplicationsNewRoute
   AppApplicationsIndexRoute: typeof AppApplicationsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
+  AppDocumentsRoute: AppDocumentsRoute,
   AppApplicationsNewRoute: AppApplicationsNewRoute,
   AppApplicationsIndexRoute: AppApplicationsIndexRoute,
 }
