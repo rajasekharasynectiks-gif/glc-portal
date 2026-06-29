@@ -25,6 +25,7 @@ import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
 import { Route as Auth2faRouteImport } from './routes/auth.2fa'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
 import { Route as AppApplicationsIndexRouteImport } from './routes/app.applications.index'
+import { Route as AppApplicationsNewRouteImport } from './routes/app.applications.new'
 
 const LicensingRoute = LicensingRouteImport.update({
   id: '/licensing',
@@ -106,6 +107,11 @@ const AppApplicationsIndexRoute = AppApplicationsIndexRouteImport.update({
   path: '/applications/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppApplicationsNewRoute = AppApplicationsNewRouteImport.update({
+  id: '/applications/new',
+  path: '/applications/new',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset': typeof AuthResetRoute
   '/auth/verify': typeof AuthVerifyRoute
+  '/app/applications/new': typeof AppApplicationsNewRoute
   '/app/applications/': typeof AppApplicationsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -141,6 +148,7 @@ export interface FileRoutesByTo {
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset': typeof AuthResetRoute
   '/auth/verify': typeof AuthVerifyRoute
+  '/app/applications/new': typeof AppApplicationsNewRoute
   '/app/applications': typeof AppApplicationsIndexRoute
 }
 export interface FileRoutesById {
@@ -160,6 +168,7 @@ export interface FileRoutesById {
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset': typeof AuthResetRoute
   '/auth/verify': typeof AuthVerifyRoute
+  '/app/applications/new': typeof AppApplicationsNewRoute
   '/app/applications/': typeof AppApplicationsIndexRoute
 }
 export interface FileRouteTypes {
@@ -180,6 +189,7 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/auth/reset'
     | '/auth/verify'
+    | '/app/applications/new'
     | '/app/applications/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/auth/reset'
     | '/auth/verify'
+    | '/app/applications/new'
     | '/app/applications'
   id:
     | '__root__'
@@ -216,6 +227,7 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/auth/reset'
     | '/auth/verify'
+    | '/app/applications/new'
     | '/app/applications/'
   fileRoutesById: FileRoutesById
 }
@@ -344,16 +356,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppApplicationsIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/applications/new': {
+      id: '/app/applications/new'
+      path: '/applications/new'
+      fullPath: '/app/applications/new'
+      preLoaderRoute: typeof AppApplicationsNewRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
+  AppApplicationsNewRoute: typeof AppApplicationsNewRoute
   AppApplicationsIndexRoute: typeof AppApplicationsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
+  AppApplicationsNewRoute: AppApplicationsNewRoute,
   AppApplicationsIndexRoute: AppApplicationsIndexRoute,
 }
 
