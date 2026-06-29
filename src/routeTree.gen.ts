@@ -18,6 +18,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRegisterRouteImport } from './routes/auth.register'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
 
 const LicensingRoute = LicensingRouteImport.update({
   id: '/licensing',
@@ -64,6 +65,11 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthForgotRoute = AuthForgotRouteImport.update({
+  id: '/forgot',
+  path: '/forgot',
+  getParentRoute: () => AuthRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/documents': typeof DocumentsRoute
   '/faq': typeof FaqRoute
   '/licensing': typeof LicensingRoute
+  '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/documents': typeof DocumentsRoute
   '/faq': typeof FaqRoute
   '/licensing': typeof LicensingRoute
+  '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/documents': typeof DocumentsRoute
   '/faq': typeof FaqRoute
   '/licensing': typeof LicensingRoute
+  '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/documents'
     | '/faq'
     | '/licensing'
+    | '/auth/forgot'
     | '/auth/login'
     | '/auth/register'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/documents'
     | '/faq'
     | '/licensing'
+    | '/auth/forgot'
     | '/auth/login'
     | '/auth/register'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/documents'
     | '/faq'
     | '/licensing'
+    | '/auth/forgot'
     | '/auth/login'
     | '/auth/register'
   fileRoutesById: FileRoutesById
@@ -210,15 +222,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/auth/forgot': {
+      id: '/auth/forgot'
+      path: '/forgot'
+      fullPath: '/auth/forgot'
+      preLoaderRoute: typeof AuthForgotRouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
 
 interface AuthRouteChildren {
+  AuthForgotRoute: typeof AuthForgotRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
+  AuthForgotRoute: AuthForgotRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
 }
