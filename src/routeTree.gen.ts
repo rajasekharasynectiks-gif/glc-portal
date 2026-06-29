@@ -23,6 +23,7 @@ import { Route as AuthRegisterRouteImport } from './routes/auth.register'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
 import { Route as Auth2faRouteImport } from './routes/auth.2fa'
+import { Route as AppSupportRouteImport } from './routes/app.support'
 import { Route as AppPaymentsRouteImport } from './routes/app.payments'
 import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
 import { Route as AppDocumentsRouteImport } from './routes/app.documents'
@@ -100,6 +101,11 @@ const Auth2faRoute = Auth2faRouteImport.update({
   path: '/2fa',
   getParentRoute: () => AuthRoute,
 } as any)
+const AppSupportRoute = AppSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppPaymentsRoute = AppPaymentsRouteImport.update({
   id: '/payments',
   path: '/payments',
@@ -144,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/app/documents': typeof AppDocumentsRoute
   '/app/notifications': typeof AppNotificationsRoute
   '/app/payments': typeof AppPaymentsRoute
+  '/app/support': typeof AppSupportRoute
   '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/app/documents': typeof AppDocumentsRoute
   '/app/notifications': typeof AppNotificationsRoute
   '/app/payments': typeof AppPaymentsRoute
+  '/app/support': typeof AppSupportRoute
   '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -189,6 +197,7 @@ export interface FileRoutesById {
   '/app/documents': typeof AppDocumentsRoute
   '/app/notifications': typeof AppNotificationsRoute
   '/app/payments': typeof AppPaymentsRoute
+  '/app/support': typeof AppSupportRoute
   '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -213,6 +222,7 @@ export interface FileRouteTypes {
     | '/app/documents'
     | '/app/notifications'
     | '/app/payments'
+    | '/app/support'
     | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
@@ -235,6 +245,7 @@ export interface FileRouteTypes {
     | '/app/documents'
     | '/app/notifications'
     | '/app/payments'
+    | '/app/support'
     | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
@@ -257,6 +268,7 @@ export interface FileRouteTypes {
     | '/app/documents'
     | '/app/notifications'
     | '/app/payments'
+    | '/app/support'
     | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
@@ -378,6 +390,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Auth2faRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/app/support': {
+      id: '/app/support'
+      path: '/support'
+      fullPath: '/app/support'
+      preLoaderRoute: typeof AppSupportRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/payments': {
       id: '/app/payments'
       path: '/payments'
@@ -428,6 +447,7 @@ interface AppRouteChildren {
   AppDocumentsRoute: typeof AppDocumentsRoute
   AppNotificationsRoute: typeof AppNotificationsRoute
   AppPaymentsRoute: typeof AppPaymentsRoute
+  AppSupportRoute: typeof AppSupportRoute
   AppApplicationsNewRoute: typeof AppApplicationsNewRoute
   AppApplicationsIndexRoute: typeof AppApplicationsIndexRoute
 }
@@ -437,6 +457,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppDocumentsRoute: AppDocumentsRoute,
   AppNotificationsRoute: AppNotificationsRoute,
   AppPaymentsRoute: AppPaymentsRoute,
+  AppSupportRoute: AppSupportRoute,
   AppApplicationsNewRoute: AppApplicationsNewRoute,
   AppApplicationsIndexRoute: AppApplicationsIndexRoute,
 }
