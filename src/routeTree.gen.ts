@@ -23,6 +23,7 @@ import { Route as AuthRegisterRouteImport } from './routes/auth.register'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
 import { Route as Auth2faRouteImport } from './routes/auth.2fa'
+import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
 
 const LicensingRoute = LicensingRouteImport.update({
   id: '/licensing',
@@ -94,16 +95,22 @@ const Auth2faRoute = Auth2faRouteImport.update({
   path: '/2fa',
   getParentRoute: () => AuthRoute,
 } as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/app': typeof AppRoute
+  '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/contact': typeof ContactRoute
   '/documents': typeof DocumentsRoute
   '/faq': typeof FaqRoute
   '/licensing': typeof LicensingRoute
+  '/app/dashboard': typeof AppDashboardRoute
   '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -114,12 +121,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/app': typeof AppRoute
+  '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/contact': typeof ContactRoute
   '/documents': typeof DocumentsRoute
   '/faq': typeof FaqRoute
   '/licensing': typeof LicensingRoute
+  '/app/dashboard': typeof AppDashboardRoute
   '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -131,12 +139,13 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/app': typeof AppRoute
+  '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/contact': typeof ContactRoute
   '/documents': typeof DocumentsRoute
   '/faq': typeof FaqRoute
   '/licensing': typeof LicensingRoute
+  '/app/dashboard': typeof AppDashboardRoute
   '/auth/2fa': typeof Auth2faRoute
   '/auth/forgot': typeof AuthForgotRoute
   '/auth/login': typeof AuthLoginRoute
@@ -155,6 +164,7 @@ export interface FileRouteTypes {
     | '/documents'
     | '/faq'
     | '/licensing'
+    | '/app/dashboard'
     | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/documents'
     | '/faq'
     | '/licensing'
+    | '/app/dashboard'
     | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/documents'
     | '/faq'
     | '/licensing'
+    | '/app/dashboard'
     | '/auth/2fa'
     | '/auth/forgot'
     | '/auth/login'
@@ -198,7 +210,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AppRoute: typeof AppRoute
+  AppRoute: typeof AppRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
   ContactRoute: typeof ContactRoute
   DocumentsRoute: typeof DocumentsRoute
@@ -306,8 +318,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Auth2faRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/app/dashboard': {
+      id: '/app/dashboard'
+      path: '/dashboard'
+      fullPath: '/app/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
+
+interface AppRouteChildren {
+  AppDashboardRoute: typeof AppDashboardRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppDashboardRoute: AppDashboardRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 interface AuthRouteChildren {
   Auth2faRoute: typeof Auth2faRoute
@@ -332,7 +361,7 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AppRoute: AppRoute,
+  AppRoute: AppRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
   ContactRoute: ContactRoute,
   DocumentsRoute: DocumentsRoute,
