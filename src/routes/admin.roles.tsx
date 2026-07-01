@@ -113,9 +113,9 @@ function RolesPage() {
             <section className="gov-card p-4">
               <h3 className="font-display text-base font-bold">Approval matrix</h3>
               <ul className="mt-2 space-y-2 text-sm">
-                {[["Application &lt; $500","Any Licensing Admin"],["Application ≥ $500","Licensing Admin + Compliance"],["Refund &lt; $200","Finance"],["Refund ≥ $200","Finance + Ops Manager"],["Config change","System Admin + Super Admin"]].map(([a,b], i) => (
-                  <li key={i} className="flex items-center justify-between border-b border-border pb-1.5 last:border-0" dangerouslySetInnerHTML={undefined}>
-                    <span dangerouslySetInnerHTML={{ __html: a }} />
+                {[["Application < $500","Any Licensing Admin"],["Application ≥ $500","Licensing Admin + Compliance"],["Refund < $200","Finance"],["Refund ≥ $200","Finance + Ops Manager"],["Config change","System Admin + Super Admin"]].map(([a,b], i) => (
+                  <li key={i} className="flex items-center justify-between border-b border-border pb-1.5 last:border-0">
+                    <span>{a}</span>
                     <span className="text-muted-foreground">{b}</span>
                   </li>
                 ))}
