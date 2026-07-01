@@ -16,7 +16,7 @@ function Payments() {
       subtitle="Outstanding balances and payment history."
     >
       <div className="grid gap-4 lg:grid-cols-3">
-        <div className="gov-card p-6 lg:col-span-2" style={{ background: "linear-gradient(135deg, oklch(0.97 0.02 250), oklch(0.94 0.04 250))" }}>
+        <div className="gov-hero-card p-6 lg:col-span-2">
           <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Amount due</div>
           <div className="mt-1 font-display text-4xl font-bold">$275.00</div>
           <div className="mt-1 text-sm text-muted-foreground">License fee + processing · Due Jul 15, 2026</div>

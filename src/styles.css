@@ -146,8 +146,16 @@
   box-shadow: var(--shadow-card);
 }
 
-@utility chip-success { background: color-mix(in oklab, var(--color-success) 12%, transparent); color: var(--color-success); }
-@utility chip-warning { background: color-mix(in oklab, var(--color-warning) 18%, transparent); color: oklch(0.45 0.13 75); }
-@utility chip-info { background: color-mix(in oklab, var(--color-info) 12%, transparent); color: var(--color-info); }
-@utility chip-error { background: color-mix(in oklab, var(--color-destructive) 12%, transparent); color: var(--color-destructive); }
+@utility chip-success { background: color-mix(in oklab, var(--color-success) 14%, transparent); color: color-mix(in oklab, var(--color-success) 80%, var(--color-foreground)); }
+@utility chip-warning { background: color-mix(in oklab, var(--color-warning) 22%, transparent); color: color-mix(in oklab, var(--color-warning) 40%, var(--color-foreground)); }
+@utility chip-info { background: color-mix(in oklab, var(--color-info) 14%, transparent); color: color-mix(in oklab, var(--color-info) 70%, var(--color-foreground)); }
+@utility chip-error { background: color-mix(in oklab, var(--color-destructive) 14%, transparent); color: color-mix(in oklab, var(--color-destructive) 70%, var(--color-foreground)); }
 @utility chip-muted { background: var(--color-surface-muted); color: var(--color-muted-foreground); }
+
+@utility gov-hero-card {
+  background: linear-gradient(135deg, color-mix(in oklab, var(--color-primary) 8%, var(--color-card)), color-mix(in oklab, var(--color-primary) 16%, var(--color-card)));
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-card);
+}
+
