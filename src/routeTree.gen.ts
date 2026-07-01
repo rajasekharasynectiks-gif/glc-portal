@@ -28,9 +28,18 @@ import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppProfileRouteImport } from './routes/app.profile'
 import { Route as AppPaymentsRouteImport } from './routes/app.payments'
 import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppMessagesRouteImport } from './routes/app.messages'
 import { Route as AppDocumentsRouteImport } from './routes/app.documents'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
 import { Route as AppApplicationsIndexRouteImport } from './routes/app.applications.index'
+import { Route as AppPaymentsResultRouteImport } from './routes/app.payments.result'
+import { Route as AppPaymentsRequestRouteImport } from './routes/app.payments.request'
+import { Route as AppPaymentsReceiptRouteImport } from './routes/app.payments.receipt'
+import { Route as AppPaymentsEftRouteImport } from './routes/app.payments.eft'
+import { Route as AppPaymentsCheckoutRouteImport } from './routes/app.payments.checkout'
+import { Route as AppApplicationsTrackingRouteImport } from './routes/app.applications.tracking'
+import { Route as AppApplicationsSuccessRouteImport } from './routes/app.applications.success'
+import { Route as AppApplicationsReviewRouteImport } from './routes/app.applications.review'
 import { Route as AppApplicationsNewRouteImport } from './routes/app.applications.new'
 
 const LicensingRoute = LicensingRouteImport.update({
@@ -128,6 +137,11 @@ const AppNotificationsRoute = AppNotificationsRouteImport.update({
   path: '/notifications',
   getParentRoute: () => AppRoute,
 } as any)
+const AppMessagesRoute = AppMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDocumentsRoute = AppDocumentsRouteImport.update({
   id: '/documents',
   path: '/documents',
@@ -141,6 +155,46 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
 const AppApplicationsIndexRoute = AppApplicationsIndexRouteImport.update({
   id: '/applications/',
   path: '/applications/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPaymentsResultRoute = AppPaymentsResultRouteImport.update({
+  id: '/result',
+  path: '/result',
+  getParentRoute: () => AppPaymentsRoute,
+} as any)
+const AppPaymentsRequestRoute = AppPaymentsRequestRouteImport.update({
+  id: '/request',
+  path: '/request',
+  getParentRoute: () => AppPaymentsRoute,
+} as any)
+const AppPaymentsReceiptRoute = AppPaymentsReceiptRouteImport.update({
+  id: '/receipt',
+  path: '/receipt',
+  getParentRoute: () => AppPaymentsRoute,
+} as any)
+const AppPaymentsEftRoute = AppPaymentsEftRouteImport.update({
+  id: '/eft',
+  path: '/eft',
+  getParentRoute: () => AppPaymentsRoute,
+} as any)
+const AppPaymentsCheckoutRoute = AppPaymentsCheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => AppPaymentsRoute,
+} as any)
+const AppApplicationsTrackingRoute = AppApplicationsTrackingRouteImport.update({
+  id: '/applications/tracking',
+  path: '/applications/tracking',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppApplicationsSuccessRoute = AppApplicationsSuccessRouteImport.update({
+  id: '/applications/success',
+  path: '/applications/success',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppApplicationsReviewRoute = AppApplicationsReviewRouteImport.update({
+  id: '/applications/review',
+  path: '/applications/review',
   getParentRoute: () => AppRoute,
 } as any)
 const AppApplicationsNewRoute = AppApplicationsNewRouteImport.update({
@@ -160,8 +214,9 @@ export interface FileRoutesByFullPath {
   '/licensing': typeof LicensingRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/documents': typeof AppDocumentsRoute
+  '/app/messages': typeof AppMessagesRoute
   '/app/notifications': typeof AppNotificationsRoute
-  '/app/payments': typeof AppPaymentsRoute
+  '/app/payments': typeof AppPaymentsRouteWithChildren
   '/app/profile': typeof AppProfileRoute
   '/app/settings': typeof AppSettingsRoute
   '/app/support': typeof AppSupportRoute
@@ -172,6 +227,14 @@ export interface FileRoutesByFullPath {
   '/auth/reset': typeof AuthResetRoute
   '/auth/verify': typeof AuthVerifyRoute
   '/app/applications/new': typeof AppApplicationsNewRoute
+  '/app/applications/review': typeof AppApplicationsReviewRoute
+  '/app/applications/success': typeof AppApplicationsSuccessRoute
+  '/app/applications/tracking': typeof AppApplicationsTrackingRoute
+  '/app/payments/checkout': typeof AppPaymentsCheckoutRoute
+  '/app/payments/eft': typeof AppPaymentsEftRoute
+  '/app/payments/receipt': typeof AppPaymentsReceiptRoute
+  '/app/payments/request': typeof AppPaymentsRequestRoute
+  '/app/payments/result': typeof AppPaymentsResultRoute
   '/app/applications/': typeof AppApplicationsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -185,8 +248,9 @@ export interface FileRoutesByTo {
   '/licensing': typeof LicensingRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/documents': typeof AppDocumentsRoute
+  '/app/messages': typeof AppMessagesRoute
   '/app/notifications': typeof AppNotificationsRoute
-  '/app/payments': typeof AppPaymentsRoute
+  '/app/payments': typeof AppPaymentsRouteWithChildren
   '/app/profile': typeof AppProfileRoute
   '/app/settings': typeof AppSettingsRoute
   '/app/support': typeof AppSupportRoute
@@ -197,6 +261,14 @@ export interface FileRoutesByTo {
   '/auth/reset': typeof AuthResetRoute
   '/auth/verify': typeof AuthVerifyRoute
   '/app/applications/new': typeof AppApplicationsNewRoute
+  '/app/applications/review': typeof AppApplicationsReviewRoute
+  '/app/applications/success': typeof AppApplicationsSuccessRoute
+  '/app/applications/tracking': typeof AppApplicationsTrackingRoute
+  '/app/payments/checkout': typeof AppPaymentsCheckoutRoute
+  '/app/payments/eft': typeof AppPaymentsEftRoute
+  '/app/payments/receipt': typeof AppPaymentsReceiptRoute
+  '/app/payments/request': typeof AppPaymentsRequestRoute
+  '/app/payments/result': typeof AppPaymentsResultRoute
   '/app/applications': typeof AppApplicationsIndexRoute
 }
 export interface FileRoutesById {
@@ -211,8 +283,9 @@ export interface FileRoutesById {
   '/licensing': typeof LicensingRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/documents': typeof AppDocumentsRoute
+  '/app/messages': typeof AppMessagesRoute
   '/app/notifications': typeof AppNotificationsRoute
-  '/app/payments': typeof AppPaymentsRoute
+  '/app/payments': typeof AppPaymentsRouteWithChildren
   '/app/profile': typeof AppProfileRoute
   '/app/settings': typeof AppSettingsRoute
   '/app/support': typeof AppSupportRoute
@@ -223,6 +296,14 @@ export interface FileRoutesById {
   '/auth/reset': typeof AuthResetRoute
   '/auth/verify': typeof AuthVerifyRoute
   '/app/applications/new': typeof AppApplicationsNewRoute
+  '/app/applications/review': typeof AppApplicationsReviewRoute
+  '/app/applications/success': typeof AppApplicationsSuccessRoute
+  '/app/applications/tracking': typeof AppApplicationsTrackingRoute
+  '/app/payments/checkout': typeof AppPaymentsCheckoutRoute
+  '/app/payments/eft': typeof AppPaymentsEftRoute
+  '/app/payments/receipt': typeof AppPaymentsReceiptRoute
+  '/app/payments/request': typeof AppPaymentsRequestRoute
+  '/app/payments/result': typeof AppPaymentsResultRoute
   '/app/applications/': typeof AppApplicationsIndexRoute
 }
 export interface FileRouteTypes {
@@ -238,6 +319,7 @@ export interface FileRouteTypes {
     | '/licensing'
     | '/app/dashboard'
     | '/app/documents'
+    | '/app/messages'
     | '/app/notifications'
     | '/app/payments'
     | '/app/profile'
@@ -250,6 +332,14 @@ export interface FileRouteTypes {
     | '/auth/reset'
     | '/auth/verify'
     | '/app/applications/new'
+    | '/app/applications/review'
+    | '/app/applications/success'
+    | '/app/applications/tracking'
+    | '/app/payments/checkout'
+    | '/app/payments/eft'
+    | '/app/payments/receipt'
+    | '/app/payments/request'
+    | '/app/payments/result'
     | '/app/applications/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -263,6 +353,7 @@ export interface FileRouteTypes {
     | '/licensing'
     | '/app/dashboard'
     | '/app/documents'
+    | '/app/messages'
     | '/app/notifications'
     | '/app/payments'
     | '/app/profile'
@@ -275,6 +366,14 @@ export interface FileRouteTypes {
     | '/auth/reset'
     | '/auth/verify'
     | '/app/applications/new'
+    | '/app/applications/review'
+    | '/app/applications/success'
+    | '/app/applications/tracking'
+    | '/app/payments/checkout'
+    | '/app/payments/eft'
+    | '/app/payments/receipt'
+    | '/app/payments/request'
+    | '/app/payments/result'
     | '/app/applications'
   id:
     | '__root__'
@@ -288,6 +387,7 @@ export interface FileRouteTypes {
     | '/licensing'
     | '/app/dashboard'
     | '/app/documents'
+    | '/app/messages'
     | '/app/notifications'
     | '/app/payments'
     | '/app/profile'
@@ -300,6 +400,14 @@ export interface FileRouteTypes {
     | '/auth/reset'
     | '/auth/verify'
     | '/app/applications/new'
+    | '/app/applications/review'
+    | '/app/applications/success'
+    | '/app/applications/tracking'
+    | '/app/payments/checkout'
+    | '/app/payments/eft'
+    | '/app/payments/receipt'
+    | '/app/payments/request'
+    | '/app/payments/result'
     | '/app/applications/'
   fileRoutesById: FileRoutesById
 }
@@ -449,6 +557,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppNotificationsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/messages': {
+      id: '/app/messages'
+      path: '/messages'
+      fullPath: '/app/messages'
+      preLoaderRoute: typeof AppMessagesRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/documents': {
       id: '/app/documents'
       path: '/documents'
@@ -470,6 +585,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppApplicationsIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/payments/result': {
+      id: '/app/payments/result'
+      path: '/result'
+      fullPath: '/app/payments/result'
+      preLoaderRoute: typeof AppPaymentsResultRouteImport
+      parentRoute: typeof AppPaymentsRoute
+    }
+    '/app/payments/request': {
+      id: '/app/payments/request'
+      path: '/request'
+      fullPath: '/app/payments/request'
+      preLoaderRoute: typeof AppPaymentsRequestRouteImport
+      parentRoute: typeof AppPaymentsRoute
+    }
+    '/app/payments/receipt': {
+      id: '/app/payments/receipt'
+      path: '/receipt'
+      fullPath: '/app/payments/receipt'
+      preLoaderRoute: typeof AppPaymentsReceiptRouteImport
+      parentRoute: typeof AppPaymentsRoute
+    }
+    '/app/payments/eft': {
+      id: '/app/payments/eft'
+      path: '/eft'
+      fullPath: '/app/payments/eft'
+      preLoaderRoute: typeof AppPaymentsEftRouteImport
+      parentRoute: typeof AppPaymentsRoute
+    }
+    '/app/payments/checkout': {
+      id: '/app/payments/checkout'
+      path: '/checkout'
+      fullPath: '/app/payments/checkout'
+      preLoaderRoute: typeof AppPaymentsCheckoutRouteImport
+      parentRoute: typeof AppPaymentsRoute
+    }
+    '/app/applications/tracking': {
+      id: '/app/applications/tracking'
+      path: '/applications/tracking'
+      fullPath: '/app/applications/tracking'
+      preLoaderRoute: typeof AppApplicationsTrackingRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/applications/success': {
+      id: '/app/applications/success'
+      path: '/applications/success'
+      fullPath: '/app/applications/success'
+      preLoaderRoute: typeof AppApplicationsSuccessRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/applications/review': {
+      id: '/app/applications/review'
+      path: '/applications/review'
+      fullPath: '/app/applications/review'
+      preLoaderRoute: typeof AppApplicationsReviewRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/applications/new': {
       id: '/app/applications/new'
       path: '/applications/new'
@@ -480,27 +651,55 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AppPaymentsRouteChildren {
+  AppPaymentsCheckoutRoute: typeof AppPaymentsCheckoutRoute
+  AppPaymentsEftRoute: typeof AppPaymentsEftRoute
+  AppPaymentsReceiptRoute: typeof AppPaymentsReceiptRoute
+  AppPaymentsRequestRoute: typeof AppPaymentsRequestRoute
+  AppPaymentsResultRoute: typeof AppPaymentsResultRoute
+}
+
+const AppPaymentsRouteChildren: AppPaymentsRouteChildren = {
+  AppPaymentsCheckoutRoute: AppPaymentsCheckoutRoute,
+  AppPaymentsEftRoute: AppPaymentsEftRoute,
+  AppPaymentsReceiptRoute: AppPaymentsReceiptRoute,
+  AppPaymentsRequestRoute: AppPaymentsRequestRoute,
+  AppPaymentsResultRoute: AppPaymentsResultRoute,
+}
+
+const AppPaymentsRouteWithChildren = AppPaymentsRoute._addFileChildren(
+  AppPaymentsRouteChildren,
+)
+
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppDocumentsRoute: typeof AppDocumentsRoute
+  AppMessagesRoute: typeof AppMessagesRoute
   AppNotificationsRoute: typeof AppNotificationsRoute
-  AppPaymentsRoute: typeof AppPaymentsRoute
+  AppPaymentsRoute: typeof AppPaymentsRouteWithChildren
   AppProfileRoute: typeof AppProfileRoute
   AppSettingsRoute: typeof AppSettingsRoute
   AppSupportRoute: typeof AppSupportRoute
   AppApplicationsNewRoute: typeof AppApplicationsNewRoute
+  AppApplicationsReviewRoute: typeof AppApplicationsReviewRoute
+  AppApplicationsSuccessRoute: typeof AppApplicationsSuccessRoute
+  AppApplicationsTrackingRoute: typeof AppApplicationsTrackingRoute
   AppApplicationsIndexRoute: typeof AppApplicationsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppDocumentsRoute: AppDocumentsRoute,
+  AppMessagesRoute: AppMessagesRoute,
   AppNotificationsRoute: AppNotificationsRoute,
-  AppPaymentsRoute: AppPaymentsRoute,
+  AppPaymentsRoute: AppPaymentsRouteWithChildren,
   AppProfileRoute: AppProfileRoute,
   AppSettingsRoute: AppSettingsRoute,
   AppSupportRoute: AppSupportRoute,
   AppApplicationsNewRoute: AppApplicationsNewRoute,
+  AppApplicationsReviewRoute: AppApplicationsReviewRoute,
+  AppApplicationsSuccessRoute: AppApplicationsSuccessRoute,
+  AppApplicationsTrackingRoute: AppApplicationsTrackingRoute,
   AppApplicationsIndexRoute: AppApplicationsIndexRoute,
 }
 

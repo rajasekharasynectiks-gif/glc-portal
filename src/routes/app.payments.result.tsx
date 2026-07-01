@@ -24,7 +24,7 @@ const map: Record<Status, { tone: "success"|"warning"|"error"|"info"; title: str
 
 function ResultPage() {
   const { status = "approved" } = Route.useSearch();
-  const m = map[status];
+  const m = map[status as Status];
   const ok = status === "approved";
 
   return (
