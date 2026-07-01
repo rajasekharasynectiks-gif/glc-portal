@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, ChevronDown, Search, Bell, User } from "lucide-react";
+import { Menu, X, ChevronDown, Search } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const publicNav = [
   { label: "Home", to: "/" },
@@ -71,6 +72,7 @@ export function PublicHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <button aria-label="Search" className="hidden h-10 w-10 place-items-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground md:grid">
             <Search className="h-5 w-5" />
           </button>

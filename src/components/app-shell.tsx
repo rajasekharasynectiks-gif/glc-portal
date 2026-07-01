@@ -1,16 +1,19 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  LayoutDashboard, FileText, FilePlus2, FolderOpen, CreditCard,
-  Bell, LifeBuoy, User, Settings, LogOut, Menu, X, Search, ChevronDown
+  LayoutDashboard, FileText, FilePlus2, FolderOpen, CreditCard, Activity,
+  Bell, LifeBuoy, User, Settings, LogOut, Menu, X, Search, ChevronDown, MessageSquare
 } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const nav = [
   { to: "/app/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/app/applications", label: "My Applications", icon: FileText },
   { to: "/app/applications/new", label: "New Application", icon: FilePlus2 },
+  { to: "/app/applications/tracking", label: "Tracking", icon: Activity },
   { to: "/app/documents", label: "Documents", icon: FolderOpen },
   { to: "/app/payments", label: "Payments", icon: CreditCard },
+  { to: "/app/messages", label: "Messages", icon: MessageSquare },
   { to: "/app/notifications", label: "Notifications", icon: Bell },
   { to: "/app/support", label: "Support", icon: LifeBuoy },
   { to: "/app/profile", label: "Profile", icon: User },
@@ -48,6 +51,7 @@ export function AppShell({ children, title, subtitle, breadcrumb }: {
           </div>
 
           <div className="ml-auto flex items-center gap-1.5">
+            <ThemeToggle />
             <Link to="/app/notifications" className="relative grid h-10 w-10 place-items-center rounded-md hover:bg-muted" aria-label="Notifications">
               <Bell className="h-5 w-5" />
               <span className="absolute right-2 top-2 grid h-4 min-w-4 place-items-center rounded-full bg-destructive px-1 text-[10px] font-bold text-destructive-foreground">3</span>
