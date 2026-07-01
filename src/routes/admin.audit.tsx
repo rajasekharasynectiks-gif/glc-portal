@@ -8,7 +8,7 @@ export const Route = createFileRoute("/admin/audit")({
   component: AuditPage,
 });
 
-const events = [
+const events: [string, string, string, string, string, string, any][] = [
   ["12:04:22","LOGIN","aliciad@glc.gov","Super Admin","74.212.9.14","Success",LogIn],
   ["12:03:11","UPDATE","kwalters@glc.gov","Licensing Admin","74.212.9.14","APP-2026-00142 status → In Review",Pencil],
   ["12:01:57","DOWNLOAD","mchen@glc.gov","Compliance","74.212.9.14","Business_License_Acme.pdf",DownloadCloud],
