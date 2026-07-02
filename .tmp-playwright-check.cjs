@@ -1,0 +1,28 @@
+const { chromium } = require('playwright');
+(async () => {
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage({ viewport: { width: 1400, height: 900 } });
+  page.on('console', msg => console.log('[console]', msg.type(), msg.text()));
+  page.on('pageerror', err => console.log('[pageerror]', err.message));
+  await page.goto('http://127.0.0.1:4178/georgia-lottery-portal/auth/login', { waitUntil: 'networkidle' });
+  console.log('login url', page.url());
+  await page.getByText('Sign in', { exact: true }).click();
+  await page.waitForTimeout(500);
+  console.log('after sign in', page.url(), await page.locator('h1').first().textContent().catch(e => 'no h1'));
+  await page.getByText('Profile', { exact: true }).click();
+  await page.waitForTimeout(500);
+  console.log('after profile', page.url(), await page.locator('h1').first().textContent().catch(e => 'no h1'));
+  await page.getByText('Dashboard', { exact: true }).click();
+  await page.waitForTimeout(500);
+  console.log('after dashboard click', page.url(), await page.locator('h1').first().textContent().catch(e => 'no h1'));
+  await page.getByText('New Application', { exact: true }).click();
+  await page.waitForTimeout(500);
+  console.log('after new app', page.url(), await page.locator('h1').first().textContent().catch(e => 'no h1'));
+  await page.getByRole('button', { name: /Mailing Address/i }).click();
+  await page.waitForTimeout(500);
+  console.log('after mailing step', await page.locator('h2').filter({ hasText: 'Mailing address' }).count(), await page.locator('text=Saving').count());
+  await page.getByText('Profile', { exact: true }).click();
+  await page.waitForTimeout(500);
+  console.log('after profile from wizard', page.url(), await page.locator('h1').first().textContent().catch(e => 'no h1'));
+  await browser.close();
+})().catch(err => { console.error(err); process.exit(1); });

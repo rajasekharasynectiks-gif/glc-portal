@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppShell } from "@/components/app-shell";
 import { Breadcrumb, Chip } from "@/components/public-shell";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CheckCircle2, Circle, Upload, FileText, X, ArrowRight, ArrowLeft, Save,
   ShieldCheck, Clock, Download, HelpCircle, LifeBuoy, MapPin, Check,
@@ -44,28 +44,45 @@ function WizardPage() {
   const [save, setSave] = useState<SaveState>("saved");
   const [toast, setToast] = useState<{ tone: "success" | "info" | "error"; msg: string } | null>(null);
   const [cancelOpen, setCancelOpen] = useState(false);
+  const saveTimerRef = useRef<number | null>(null);
+  const toastTimerRef = useRef<number | null>(null);
+  const mountedRef = useRef(true);
 
   // simulated autosave heartbeat
   useEffect(() => {
+    mountedRef.current = true;
     const id = setInterval(() => {
       setSave("saving");
-      setTimeout(() => setSave("saved"), 700);
+      if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
+      saveTimerRef.current = window.setTimeout(() => {
+        if (mountedRef.current) setSave("saved");
+      }, 700);
     }, 18000);
-    return () => clearInterval(id);
+    return () => {
+      mountedRef.current = false;
+      clearInterval(id);
+      if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
+      if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
+    };
   }, []);
 
   function go(next: number) {
-    setSave("saving");
-    setTimeout(() => {
-      setSave("saved");
-      setStep(Math.max(0, Math.min(STEPS.length - 1, next)));
+    const bounded = Math.max(0, Math.min(STEPS.length - 1, next));
+    console.debug("[application-wizard] step change", { from: step, to: bounded });
+    setStep(bounded);
+    if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
+    setSave("saved");
+    window.requestAnimationFrame(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 350);
+    });
   }
 
   function notify(tone: "success" | "info" | "error", msg: string) {
     setToast({ tone, msg });
-    setTimeout(() => setToast(null), 3200);
+    if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = window.setTimeout(() => {
+      if (mountedRef.current) setToast(null);
+    }, 3200);
   }
 
   const pct = Math.round(((step) / (STEPS.length - 1)) * 100);
@@ -656,14 +673,33 @@ function AddressStep() {
   const [verified, setVerified] = useState(false);
   const [validating, setValidating] = useState(false);
   const [showSuggestion, setShowSuggestion] = useState(false);
+  const validationRunRef = useRef(0);
 
-  function validate() {
+  useEffect(() => {
+    return () => {
+      validationRunRef.current += 1;
+    };
+  }, []);
+
+  async function validate() {
+    const run = validationRunRef.current + 1;
+    validationRunRef.current = run;
     setValidating(true);
     setShowSuggestion(false);
-    setTimeout(() => {
-      setValidating(false);
+
+    try {
+      console.debug("[melissa] address validation start");
+      await validateMelissaAddressWithTimeout();
+      if (validationRunRef.current !== run) return;
       setShowSuggestion(true);
-    }, 1100);
+      console.debug("[melissa] address validation complete");
+    } catch (error) {
+      if (validationRunRef.current !== run) return;
+      console.warn("[melissa] address validation unavailable; continuing with manual review", error);
+      setVerified(true);
+    } finally {
+      if (validationRunRef.current === run) setValidating(false);
+    }
   }
   function accept() {
     setShowSuggestion(false);
@@ -778,6 +814,19 @@ function AddressStep() {
       </div>
     </div>
   );
+}
+
+function wait(ms: number) {
+  return new Promise<void>((resolve) => window.setTimeout(resolve, ms));
+}
+
+async function validateMelissaAddressWithTimeout() {
+  await Promise.race([
+    wait(1100),
+    new Promise<never>((_, reject) => {
+      window.setTimeout(() => reject(new Error("Melissa validation timed out after 5 seconds")), 5000);
+    }),
+  ]);
 }
 
 /* ------------------------------------------------------------------ */

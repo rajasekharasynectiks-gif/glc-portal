@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { AuthShell, Field, Input, PrimaryButton } from "@/components/auth-shell";
 
 export const Route = createFileRoute("/auth/register")({
@@ -7,9 +7,10 @@ export const Route = createFileRoute("/auth/register")({
 });
 
 function Register() {
+  const nav = useNavigate();
   return (
-    <AuthShell title="Create your account" subtitle="It takes about 2 minutes. You'll receive a verification email next.">
-      <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); window.location.href = "/auth/verify"; }}>
+    <AuthShell title="Create a new account" subtitle="Create an account to start applications and manage licensing.">
+      <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); nav({ to: "/auth/verify" }); }}>
         <div className="grid gap-4 sm:grid-cols-2">
           <Field id="fn" label="First name" required><Input id="fn" placeholder="John" /></Field>
           <Field id="ln" label="Last name" required><Input id="ln" placeholder="Smith" /></Field>

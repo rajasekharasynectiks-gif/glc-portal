@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { PublicShell, Breadcrumb } from "@/components/public-shell";
 import { useState } from "react";
 import { Search, ChevronDown, HelpCircle } from "lucide-react";
@@ -55,7 +55,7 @@ function FAQ() {
             <HelpCircle className="h-5 w-5 text-primary" />
             <div className="mt-2 text-sm font-semibold">Still need help?</div>
             <p className="mt-1 text-xs text-muted-foreground">Our support team is here to help.</p>
-            <a href="/contact" className="mt-3 inline-block text-xs font-semibold text-primary hover:underline">Contact support →</a>
+            <Link to="/contact" className="mt-3 inline-block text-xs font-semibold text-primary hover:underline">Contact support →</Link>
           </div>
         </aside>
 

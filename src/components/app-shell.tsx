@@ -21,6 +21,21 @@ const nav = [
   { to: "/app/settings", label: "Settings", icon: Settings },
 ];
 
+function isNavActive(pathname: string, target: string) {
+  if (target === "/app/applications") {
+    return pathname === target || pathname === "/app/applications/";
+  }
+  if (target === "/app/payments") {
+    return pathname === target || pathname === "/app/payments/";
+  }
+  return pathname === target;
+}
+
+function appHref(to: string) {
+  const base = import.meta.env.BASE_URL || "/";
+  return `${base.replace(/\/$/, "")}${to}`;
+}
+
 export function AppShell({ children, title, subtitle, breadcrumb }: {
   children: React.ReactNode; title?: string; subtitle?: string; breadcrumb?: React.ReactNode;
 }) {
@@ -47,13 +62,13 @@ export function AppShell({ children, title, subtitle, breadcrumb }: {
           <button onClick={() => setOpen(!open)} aria-label="Menu" className="grid h-10 w-10 place-items-center rounded-md text-muted-foreground hover:bg-muted lg:hidden">
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
-          <Link to="/app/dashboard" className="flex items-center gap-2.5">
+          <a href={appHref("/app/dashboard")} className="flex items-center gap-2.5">
             <div className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">GLC</div>
             <div className="hidden min-w-0 leading-tight sm:block">
               <div className="text-sm font-semibold">Retailer Portal</div>
               <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Licensing System</div>
             </div>
-          </Link>
+          </a>
 
           <div className="relative ml-4 hidden flex-1 max-w-md md:block">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -65,10 +80,10 @@ export function AppShell({ children, title, subtitle, breadcrumb }: {
 
           <div className="ml-auto flex items-center gap-1.5">
             <ThemeToggle />
-            <Link to="/app/notifications" className="relative grid h-10 w-10 place-items-center rounded-md hover:bg-muted" aria-label="Notifications">
+            <a href={appHref("/app/notifications")} className="relative grid h-10 w-10 place-items-center rounded-md hover:bg-muted" aria-label="Notifications">
               <Bell className="h-5 w-5" />
               <span className="absolute right-2 top-2 grid h-4 min-w-4 place-items-center rounded-full bg-destructive px-1 text-[10px] font-bold text-destructive-foreground">3</span>
-            </Link>
+            </a>
             <div className="ml-1 hidden h-8 w-px bg-border sm:block" />
             <button className="flex items-center gap-2.5 rounded-md p-1.5 pr-2 hover:bg-muted">
               <span className="grid h-8 w-8 place-items-center rounded-full bg-gold text-gold-foreground text-xs font-bold">JM</span>
@@ -102,11 +117,11 @@ export function AppShell({ children, title, subtitle, breadcrumb }: {
             </button>
             {nav.map((n) => {
               const Icon = n.icon;
-              const active = pathname === n.to || (n.to !== "/app/dashboard" && pathname.startsWith(n.to));
+              const active = isNavActive(pathname, n.to);
               return (
-                <Link
+                <a
                   key={n.to}
-                  to={n.to}
+                  href={appHref(n.to)}
                   onClick={() => setOpen(false)}
                   title={collapsed ? n.label : undefined}
                   className={[
@@ -117,22 +132,22 @@ export function AppShell({ children, title, subtitle, breadcrumb }: {
                 >
                   <Icon className="h-4.5 w-4.5 shrink-0" />
                   <span className={collapsed ? "lg:hidden" : ""}>{n.label}</span>
-                </Link>
+                </a>
               );
             })}
             <div className="mt-auto">
-              <Link
-                to="/"
+              <a
+                href={appHref("/")}
                 title={collapsed ? "Sign out" : undefined}
                 className={["flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-sidebar-foreground/80 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground", collapsed ? "lg:justify-center lg:px-2" : ""].join(" ")}
               >
                 <LogOut className="h-4.5 w-4.5 shrink-0" />
                 <span className={collapsed ? "lg:hidden" : ""}>Sign out</span>
-              </Link>
+              </a>
               <div className={["mt-3 rounded-lg border border-border bg-surface-muted p-3", collapsed ? "lg:hidden" : ""].join(" ")}>
                 <div className="text-xs font-semibold text-foreground">Need help?</div>
                 <div className="mt-1 text-[11px] text-muted-foreground">Our support team is available Mon-Fri, 8am-5pm ET.</div>
-                <Link to="/app/support" className="mt-2 inline-block text-xs font-semibold text-primary hover:underline">Contact support</Link>
+                <a href={appHref("/app/support")} className="mt-2 inline-block text-xs font-semibold text-primary hover:underline">Contact support</a>
               </div>
             </div>
           </nav>

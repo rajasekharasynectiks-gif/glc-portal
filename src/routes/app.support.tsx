@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/components/app-shell";
 import { Breadcrumb } from "@/components/public-shell";
 import { LifeBuoy, MessageSquare, Phone, Mail } from "lucide-react";
@@ -47,9 +47,9 @@ function Support() {
           <LifeBuoy className="h-6 w-6 text-primary" />
           <h3 className="mt-3 font-display text-lg font-bold">Popular help articles</h3>
           <ul className="mt-3 space-y-2 text-sm">
-            {["How to upload documents","Resolving payment errors","Adding a co-owner","Renewing your license","Updating business address"].map(a => (
-              <li key={a}><a className="text-primary hover:underline" href="/faq">{a}</a></li>
-            ))}
+                {["How to upload documents","Resolving payment errors","Adding a co-owner","Renewing your license","Updating business address"].map(a => (
+                  <li key={a}><Link className="text-primary hover:underline" to="/faq">{a}</Link></li>
+                ))}
           </ul>
         </div>
       </div>
