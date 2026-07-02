@@ -1,17 +1,32 @@
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { fileURLToPath } from "node:url";
+import tailwindcss from "@tailwindcss/vite";
+import viteReact from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import tsConfigPaths from "vite-tsconfig-paths";
+
+const srcPath = fileURLToPath(new URL("./src", import.meta.url));
 
 export default defineConfig({
-  tanstackStart: {
-    // SSR server entry (your wrapper)
-    server: {
-      entry: "server",
-    },
+  resolve: {
+    alias: { "@": srcPath },
+    dedupe: [
+      "react",
+      "react-dom",
+      "react/jsx-runtime",
+      "react/jsx-dev-runtime",
+      "@tanstack/react-query",
+      "@tanstack/query-core",
+      "@tanstack/react-router",
+    ],
   },
 
-  vite: {
-    // optional safety: ensures correct output handling for Netlify/Nitro
-    build: {
-      outDir: ".netlify",
-    },
+  plugins: [
+    tailwindcss(),
+    tsConfigPaths({ projects: ["./tsconfig.json"] }),
+    viteReact(),
+  ],
+
+  build: {
+    outDir: "dist",
   },
 });
