@@ -7,7 +7,7 @@ export const getRouter = () => {
 
   const router = createRouter({
     // basepath must match the Vite `base` and GitHub Pages subpath
-    basepath: "/georgia-lottery-portal",
+    basepath: "/glc-portal",
     routeTree,
     context: { queryClient },
     scrollRestoration: true,

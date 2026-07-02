@@ -4,7 +4,7 @@ const { chromium } = require('playwright');
   const page = await browser.newPage({ viewport: { width: 1400, height: 900 } });
   page.on('console', msg => console.log('[console]', msg.type(), msg.text()));
   page.on('pageerror', err => console.log('[pageerror]', err.message));
-  await page.goto('http://127.0.0.1:4178/georgia-lottery-portal/auth/login', { waitUntil: 'networkidle' });
+  await page.goto('http://127.0.0.1:4178/glc-portal/auth/login', { waitUntil: 'networkidle' });
   console.log('login url', page.url());
   await page.getByText('Sign in', { exact: true }).click();
   await page.waitForTimeout(500);
