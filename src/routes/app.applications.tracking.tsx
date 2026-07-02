@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/app/applications/tracking")({
-  head: () => ({ meta: [{ title: "Application Tracking — GLC" }] }),
+  head: () => ({ meta: [{ title: "Application Tracking - GLC" }] }),
   component: TrackingPage,
 });
 
@@ -17,11 +17,11 @@ const stages = [
   { k: "received",  t: "Application Received",s: "done", d: "Jul 01, 2026 · 8:02 AM", who: "GLC System", desc: "Intake confirmed. Reference GLC-REF-4471029." },
   { k: "review",    t: "Application Review",  s: "current", d: "In progress", who: "Reviewer #214", desc: "Documents and owner disclosures under review." },
   { k: "pay-req",   t: "Payment Required",    s: "pending", d: "Est. Jul 08, 2026", who: "GLC Finance", desc: "License and application fees will be invoiced." },
-  { k: "pay-recv",  t: "Payment Received",    s: "pending", d: "—", who: "MerchantOne", desc: "Payment confirmation and receipt." },
-  { k: "eft",       t: "EFT Review",          s: "pending", d: "—", who: "GLC Finance", desc: "Voided check + bank authorization validated." },
-  { k: "compliance",t: "Compliance Review",   s: "pending", d: "—", who: "Compliance Team", desc: "Final background & regulatory checks." },
-  { k: "approved",  t: "Approved",            s: "pending", d: "—", who: "GLC Licensing", desc: "License number issued." },
-  { k: "completed", t: "Completed",           s: "pending", d: "—", who: "System", desc: "License packet delivered." },
+  { k: "pay-recv",  t: "Payment Received",    s: "pending", d: "-", who: "MerchantOne", desc: "Payment confirmation and receipt." },
+  { k: "eft",       t: "EFT Review",          s: "pending", d: "-", who: "GLC Finance", desc: "Voided check + bank authorization validated." },
+  { k: "compliance",t: "Compliance Review",   s: "pending", d: "-", who: "Compliance Team", desc: "Final background & regulatory checks." },
+  { k: "approved",  t: "Approved",            s: "pending", d: "-", who: "GLC Licensing", desc: "License number issued." },
+  { k: "completed", t: "Completed",           s: "pending", d: "-", who: "System", desc: "License packet delivered." },
 ];
 
 function stageIcon(s: string) {

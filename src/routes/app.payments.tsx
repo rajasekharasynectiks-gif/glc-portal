@@ -4,7 +4,7 @@ import { Breadcrumb, Chip } from "@/components/public-shell";
 import { CreditCard, Download } from "lucide-react";
 
 export const Route = createFileRoute("/app/payments")({
-  head: () => ({ meta: [{ title: "Payments — GLC" }] }),
+  head: () => ({ meta: [{ title: "Payments - GLC" }] }),
   component: Payments,
 });
 

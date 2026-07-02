@@ -4,7 +4,7 @@ import { Chip, Breadcrumb } from "@/components/public-shell";
 import { Plus, Search, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/app/applications/")({
-  head: () => ({ meta: [{ title: "My Applications — GLC" }] }),
+  head: () => ({ meta: [{ title: "My Applications - GLC" }] }),
   component: Apps,
 });
 

@@ -3,7 +3,7 @@ import { AuthShell, Field, Input, PrimaryButton } from "@/components/auth-shell"
 import { Eye } from "lucide-react";
 
 export const Route = createFileRoute("/auth/login")({
-  head: () => ({ meta: [{ title: "Sign in — GLC Retailer Portal" }] }),
+  head: () => ({ meta: [{ title: "Sign in - GLC Retailer Portal" }] }),
   component: Login,
 });
 

@@ -6,8 +6,10 @@ export function ThemeToggle({ compact = false }: { compact?: boolean }) {
 
   useEffect(() => {
     const stored = typeof window !== "undefined" ? localStorage.getItem("glc-theme") : null;
-    const prefers = typeof window !== "undefined" && window.matchMedia?.("(prefers-color-scheme: dark)").matches;
-    const isDark = stored ? stored === "dark" : !!prefers;
+    const isDark = stored ? stored === "dark" : false;
+    if (!stored) {
+      try { localStorage.setItem("glc-theme", "light"); } catch {}
+    }
     setDark(isDark);
     document.documentElement.classList.toggle("dark", isDark);
   }, []);

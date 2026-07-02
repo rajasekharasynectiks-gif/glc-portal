@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AuthShell, Field, Input, PrimaryButton } from "@/components/auth-shell";
 
 export const Route = createFileRoute("/auth/register")({
-  head: () => ({ meta: [{ title: "Create account — GLC Retailer Portal" }] }),
+  head: () => ({ meta: [{ title: "Create account - GLC Retailer Portal" }] }),
   component: Register,
 });
 

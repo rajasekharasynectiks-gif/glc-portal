@@ -5,7 +5,7 @@ import { useState } from "react";
 import { CheckCircle2, AlertTriangle, Info, CreditCard, MessageSquare } from "lucide-react";
 
 export const Route = createFileRoute("/app/notifications")({
-  head: () => ({ meta: [{ title: "Notifications — GLC" }] }),
+  head: () => ({ meta: [{ title: "Notifications - GLC" }] }),
   component: Notifs,
 });
 
@@ -15,7 +15,7 @@ const items = [
   { i: CheckCircle2, tone: "success", t: "Business license approved", d: "Your business license has been verified by Reviewer #214.", time: "10 min ago", read: false, cat: "Application" },
   { i: AlertTriangle, tone: "warning", t: "Payment due in 14 days", d: "Your $200 license fee is due July 15, 2026.", time: "2 hours ago", read: false, cat: "Payment" },
   { i: MessageSquare, tone: "info", t: "New message from licensing", d: "Please clarify your premises lease end date.", time: "1 day ago", read: false, cat: "System" },
-  { i: Info, tone: "info", t: "Scheduled maintenance July 4", d: "Portal unavailable Sat July 4, 2 AM–6 AM ET.", time: "3 days ago", read: true, cat: "System" },
+  { i: Info, tone: "info", t: "Scheduled maintenance July 4", d: "Portal unavailable Sat July 4, 2 AM-6 AM ET.", time: "3 days ago", read: true, cat: "System" },
   { i: CreditCard, tone: "success", t: "Payment received", d: "$75 application fee processed successfully.", time: "Jun 18", read: true, cat: "Payment" },
 ] as const;
 

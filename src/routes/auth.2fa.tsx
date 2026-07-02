@@ -3,7 +3,7 @@ import { AuthShell, PrimaryButton } from "@/components/auth-shell";
 import { Smartphone, ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/auth/2fa")({
-  head: () => ({ meta: [{ title: "Two-factor authentication — GLC" }] }),
+  head: () => ({ meta: [{ title: "Two-factor authentication - GLC" }] }),
   component: TwoFA,
 });
 

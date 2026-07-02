@@ -3,7 +3,7 @@ import { PublicShell, Breadcrumb } from "@/components/public-shell";
 import { ArrowRight, CheckCircle2, FileText, DollarSign, ClipboardCheck, BadgeCheck } from "lucide-react";
 
 export const Route = createFileRoute("/licensing")({
-  head: () => ({ meta: [{ title: "Retailer Licensing — Georgia Lottery" }, { name: "description", content: "Eligibility, fees, and process to become a Georgia Lottery retailer." }] }),
+  head: () => ({ meta: [{ title: "Retailer Licensing - Georgia Lottery" }, { name: "description", content: "Eligibility, fees, and process to become a Georgia Lottery retailer." }] }),
   component: Licensing,
 });
 
@@ -25,7 +25,7 @@ function Licensing() {
             { i: FileText, t: "Pre-qualification", d: "Confirm your business meets eligibility requirements." },
             { i: ClipboardCheck, t: "Application", d: "Submit business, ownership, and location details." },
             { i: DollarSign, t: "Fees & Bond", d: "Pay applicable licensing fees and post your surety bond." },
-            { i: BadgeCheck, t: "Approval", d: "Receive your digital license within 5–7 business days." },
+            { i: BadgeCheck, t: "Approval", d: "Receive your digital license within 5-7 business days." },
           ].map((s, i) => (
             <li key={s.t} className="relative">
               <span className="absolute -left-[42px] grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground font-bold text-sm shadow-elegant">{i+1}</span>

@@ -4,7 +4,7 @@ import { Breadcrumb, Chip } from "@/components/public-shell";
 import { FileText, Upload, Search } from "lucide-react";
 
 export const Route = createFileRoute("/app/documents")({
-  head: () => ({ meta: [{ title: "My Documents — GLC" }] }),
+  head: () => ({ meta: [{ title: "My Documents - GLC" }] }),
   component: MyDocs,
 });
 

@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/app/applications/new")({
-  head: () => ({ meta: [{ title: "New Application — GLC" }] }),
+  head: () => ({ meta: [{ title: "New Application - GLC" }] }),
   component: WizardPage,
 });
 
@@ -114,7 +114,7 @@ function WizardPage() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
-        {/* Stepper — vertical on lg, horizontal scroll on mobile */}
+        {/* Stepper - vertical on lg, horizontal scroll on mobile */}
         <Stepper step={step} onJump={go} pct={pct} />
 
         <div className="min-w-0">
@@ -379,7 +379,7 @@ function SaveBadge({ state }: { state: SaveState }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  STEP 1 — Eligibility                                              */
+/*  STEP 1 - Eligibility                                              */
 /* ------------------------------------------------------------------ */
 
 function EligibilityStep({ onStart }: { onStart: () => void }) {
@@ -489,7 +489,7 @@ function EligibilityStep({ onStart }: { onStart: () => void }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  STEP 2 — Retailer Information                                     */
+/*  STEP 2 - Retailer Information                                     */
 /* ------------------------------------------------------------------ */
 
 function RetailerStep() {
@@ -537,15 +537,15 @@ function RetailerStep() {
         </Field>
         <Field label="Years in business" required>
           <SelectInput defaultValue="5">
-            <option>Less than 1</option><option>1–3</option><option>3–5</option>
-            <option value="5">5–10</option><option>10+</option>
+            <option>Less than 1</option><option>1-3</option><option>3-5</option>
+            <option value="5">5-10</option><option>10+</option>
           </SelectInput>
         </Field>
         <Field label="Estimated annual revenue" hint="Used for bond tier calculation">
           <SelectInput defaultValue="500k">
             <option value="100k">Under $250K</option>
-            <option value="500k">$250K – $1M</option>
-            <option value="1m">$1M – $5M</option>
+            <option value="500k">$250K - $1M</option>
+            <option value="1m">$1M - $5M</option>
             <option value="5m">$5M+</option>
           </SelectInput>
         </Field>
@@ -600,7 +600,7 @@ function RetailerStep() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  STEP 3 — Business Information                                     */
+/*  STEP 3 - Business Information                                     */
 /* ------------------------------------------------------------------ */
 
 function BusinessStep() {
@@ -610,10 +610,10 @@ function BusinessStep() {
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Number of locations" required>
-          <SelectInput defaultValue="1"><option>1</option><option>2–5</option><option>6–10</option><option>10+</option></SelectInput>
+          <SelectInput defaultValue="1"><option>1</option><option>2-5</option><option>6-10</option><option>10+</option></SelectInput>
         </Field>
         <Field label="Number of employees" required>
-          <SelectInput defaultValue="5"><option>1–4</option><option value="5">5–10</option><option>11–25</option><option>25+</option></SelectInput>
+          <SelectInput defaultValue="5"><option>1-4</option><option value="5">5-10</option><option>11-25</option><option>25+</option></SelectInput>
         </Field>
         <Field label="Bank name (for ACH settlement)" required>
           <TextInput defaultValue="Wells Fargo Bank, N.A." />
@@ -649,7 +649,7 @@ function BusinessStep() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  STEP 4 — Business Address                                         */
+/*  STEP 4 - Business Address                                         */
 /* ------------------------------------------------------------------ */
 
 function AddressStep() {
@@ -781,7 +781,7 @@ function AddressStep() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  STEP 5 — Mailing Address                                          */
+/*  STEP 5 - Mailing Address                                          */
 /* ------------------------------------------------------------------ */
 
 function MailingStep() {
@@ -832,7 +832,7 @@ function MailingStep() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  STEP 6 — Owners                                                   */
+/*  STEP 6 - Owners                                                   */
 /* ------------------------------------------------------------------ */
 
 type Owner = {
@@ -1052,7 +1052,7 @@ function OwnerDialog({ owner, onClose, onSave }: { owner: Owner; onClose: () => 
                 <div className="flex items-start gap-3">
                   <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-info" />
                   <p className="text-foreground/80">
-                    Identity verification will run a background check via our authorized partner. This may take 1–3 business days.
+                    Identity verification will run a background check via our authorized partner. This may take 1-3 business days.
                   </p>
                 </div>
               </div>
@@ -1080,7 +1080,7 @@ function OwnerDialog({ owner, onClose, onSave }: { owner: Owner; onClose: () => 
 }
 
 /* ------------------------------------------------------------------ */
-/*  STEP 7 — Documents                                                */
+/*  STEP 7 - Documents                                                */
 /* ------------------------------------------------------------------ */
 
 type DocStatus = "approved" | "review" | "missing" | "uploading" | "error";
@@ -1091,9 +1091,9 @@ const INITIAL_DOCS: Doc[] = [
   { t: "Georgia business license", required: true, n: "GA_business_license.pdf", sz: "1.4 MB", st: "approved", scan: "clean" },
   { t: "Premises lease agreement", required: true, n: "peachtree_lease.pdf", sz: "3.1 MB", st: "review", scan: "clean" },
   { t: "Surety bond certificate ($10,000)", required: true, n: null, sz: null, st: "missing" },
-  { t: "Owner #1 — Driver license", required: true, n: "marcus_dl.jpg", sz: "812 KB", st: "approved", scan: "clean" },
-  { t: "Owner #2 — Driver license", required: true, n: "priya_dl.jpg", sz: "640 KB", st: "uploading", progress: 64, scan: "scanning" },
-  { t: "Owner #3 — Driver license", required: true, n: null, sz: null, st: "missing" },
+  { t: "Owner #1 - Driver license", required: true, n: "marcus_dl.jpg", sz: "812 KB", st: "approved", scan: "clean" },
+  { t: "Owner #2 - Driver license", required: true, n: "priya_dl.jpg", sz: "640 KB", st: "uploading", progress: 64, scan: "scanning" },
+  { t: "Owner #3 - Driver license", required: true, n: null, sz: null, st: "missing" },
   { t: "Voided business check", required: false, n: "voided_check.pdf", sz: "112 KB", st: "approved", scan: "clean" },
 ];
 
@@ -1230,7 +1230,7 @@ function DocCard({ doc, onChange }: { doc: Doc; onChange: (d: Doc) => void }) {
         </label>
       ) : status === "error" ? (
         <div className="mt-3 flex items-center justify-between gap-2 rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-xs">
-          <span className="text-destructive">Upload failed — file exceeds 10 MB limit.</span>
+          <span className="text-destructive">Upload failed - file exceeds 10 MB limit.</span>
           <button className="inline-flex items-center gap-1 rounded-md bg-destructive px-2.5 py-1 text-[11px] font-semibold text-destructive-foreground hover:opacity-90">
             <RefreshCw className="h-3 w-3" /> Retry
           </button>
@@ -1248,7 +1248,7 @@ function DocCard({ doc, onChange }: { doc: Doc; onChange: (d: Doc) => void }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  STEP 8 — Review                                                   */
+/*  STEP 8 - Review                                                   */
 /* ------------------------------------------------------------------ */
 
 function ReviewStep({ onEdit }: { onEdit: (step: number) => void }) {
@@ -1259,7 +1259,7 @@ function ReviewStep({ onEdit }: { onEdit: (step: number) => void }) {
       ["Phone", "(404) 555-0143"], ["Email", "operations@peachtreemart.com"],
     ]},
     { step: 2, title: "Business operations", items: [
-      ["Locations", "1"], ["Employees", "5–10"],
+      ["Locations", "1"], ["Employees", "5-10"],
       ["Bank", "Wells Fargo Bank, N.A."], ["Account", "••••4421"],
       ["Insurance", "The Hartford"], ["Liability", "$1,000,000"],
     ]},
@@ -1331,7 +1331,7 @@ function ReviewStep({ onEdit }: { onEdit: (step: number) => void }) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  STEP 9 — Submit                                                   */
+/*  STEP 9 - Submit                                                   */
 /* ------------------------------------------------------------------ */
 
 function SubmitStep({ notify }: { notify: (t: "success"|"info"|"error", m: string) => void }) {
@@ -1385,7 +1385,7 @@ function SubmitStep({ notify }: { notify: (t: "success"|"info"|"error", m: strin
               <Info className="mt-0.5 h-5 w-5 shrink-0 text-info" />
               <p>
                 Once submitted, you will receive a confirmation email with your application number. Background checks and
-                premises inspections typically take <strong>10–15 business days</strong>. You may track the status from your dashboard.
+                premises inspections typically take <strong>10-15 business days</strong>. You may track the status from your dashboard.
               </p>
             </div>
           </div>

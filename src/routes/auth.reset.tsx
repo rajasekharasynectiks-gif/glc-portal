@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AuthShell, Field, Input, PrimaryButton } from "@/components/auth-shell";
 
 export const Route = createFileRoute("/auth/reset")({
-  head: () => ({ meta: [{ title: "Set a new password — GLC" }] }),
+  head: () => ({ meta: [{ title: "Set a new password - GLC" }] }),
   component: Reset,
 });
 

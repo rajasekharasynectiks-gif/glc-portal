@@ -3,7 +3,7 @@ import { AuthShell, PrimaryButton } from "@/components/auth-shell";
 import { MailCheck } from "lucide-react";
 
 export const Route = createFileRoute("/auth/verify")({
-  head: () => ({ meta: [{ title: "Verify your email — GLC" }] }),
+  head: () => ({ meta: [{ title: "Verify your email - GLC" }] }),
   component: Verify,
 });
 

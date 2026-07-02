@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/app/applications/review")({
-  head: () => ({ meta: [{ title: "Review & Submit — GLC" }] }),
+  head: () => ({ meta: [{ title: "Review & Submit - GLC" }] }),
   component: ReviewPage,
 });
 
@@ -224,7 +224,7 @@ function ReviewPage() {
             </ul>
             <div className="mt-5 rounded-md border border-border bg-surface-muted p-3 text-xs text-muted-foreground">
               <div className="flex items-center gap-1.5 font-semibold text-foreground"><Sparkles className="h-3.5 w-3.5 text-gold" /> Estimated review</div>
-              <div className="mt-1">10–15 business days after submission.</div>
+              <div className="mt-1">10-15 business days after submission.</div>
             </div>
           </div>
         </aside>

@@ -4,7 +4,7 @@ import { Breadcrumb } from "@/components/public-shell";
 import { LifeBuoy, MessageSquare, Phone, Mail } from "lucide-react";
 
 export const Route = createFileRoute("/app/support")({
-  head: () => ({ meta: [{ title: "Support — GLC" }] }),
+  head: () => ({ meta: [{ title: "Support - GLC" }] }),
   component: Support,
 });
 
@@ -17,7 +17,7 @@ function Support() {
     >
       <div className="grid gap-4 md:grid-cols-3">
         {[
-          { i: Phone, t: "Call support", d: "(404) 215-5000", s: "Mon–Fri 8a–5p ET" },
+          { i: Phone, t: "Call support", d: "(404) 215-5000", s: "Mon-Fri 8a-5p ET" },
           { i: Mail, t: "Email", d: "licensing@galottery.org", s: "Response within 1 business day" },
           { i: MessageSquare, t: "Live chat", d: "Start chat", s: "Available now" },
         ].map(c => (

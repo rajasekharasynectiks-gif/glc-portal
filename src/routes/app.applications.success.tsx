@@ -4,7 +4,7 @@ import { Breadcrumb } from "@/components/public-shell";
 import { CheckCircle2, Download, Printer, Activity, Home, Mail, Calendar, Hash } from "lucide-react";
 
 export const Route = createFileRoute("/app/applications/success")({
-  head: () => ({ meta: [{ title: "Application Submitted — GLC" }] }),
+  head: () => ({ meta: [{ title: "Application Submitted - GLC" }] }),
   component: SuccessPage,
 });
 
@@ -29,7 +29,7 @@ function SuccessPage() {
               { i: Hash, l: "Application Number", v: "APP-2026-08831" },
               { i: Hash, l: "Reference Number", v: "GLC-REF-4471029" },
               { i: Calendar, l: "Submission Date", v: new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" }) },
-              { i: Activity, l: "Estimated Review", v: "10–15 business days" },
+              { i: Activity, l: "Estimated Review", v: "10-15 business days" },
             ].map((r) => (
               <div key={r.l} className="rounded-lg border border-border bg-surface p-4">
                 <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground"><r.i className="h-3.5 w-3.5" />{r.l}</div>

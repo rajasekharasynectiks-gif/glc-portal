@@ -21,7 +21,7 @@ export function AuthShell({ children, title, subtitle }: { children: React.React
             <span className="h-1.5 w-1.5 rounded-full bg-gold" />
             Official Government Portal
           </div>
-          <h2 className="mt-5 font-display text-4xl font-bold leading-tight">Apply for your Georgia Lottery retailer license — securely, online.</h2>
+          <h2 className="mt-5 font-display text-4xl font-bold leading-tight">Apply for your Georgia Lottery retailer license - securely, online.</h2>
           <p className="mt-4 text-white/80">A modern, accessible licensing experience for Georgia businesses. Save your progress, upload documents, and track every step from a single dashboard.</p>
           <ul className="mt-8 space-y-3 text-sm">
             {[

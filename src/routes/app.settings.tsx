@@ -3,7 +3,7 @@ import { AppShell } from "@/components/app-shell";
 import { Breadcrumb } from "@/components/public-shell";
 
 export const Route = createFileRoute("/app/settings")({
-  head: () => ({ meta: [{ title: "Settings — GLC" }] }),
+  head: () => ({ meta: [{ title: "Settings - GLC" }] }),
   component: Settings,
 });
 

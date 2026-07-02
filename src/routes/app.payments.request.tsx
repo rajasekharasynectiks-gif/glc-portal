@@ -4,7 +4,7 @@ import { Breadcrumb, Chip } from "@/components/public-shell";
 import { CreditCard, Download, LifeBuoy, Info, Calendar, Hash, FileText } from "lucide-react";
 
 export const Route = createFileRoute("/app/payments/request")({
-  head: () => ({ meta: [{ title: "Payment Request — GLC" }] }),
+  head: () => ({ meta: [{ title: "Payment Request - GLC" }] }),
   component: RequestPage,
 });
 
@@ -47,7 +47,7 @@ function RequestPage() {
               </thead>
               <tbody className="divide-y divide-border">
                 <tr><td className="px-4 py-3">Application fee</td><td className="px-4 py-3 text-right font-semibold">$75.00</td></tr>
-                <tr><td className="px-4 py-3">Retailer license fee — Traditional Lottery</td><td className="px-4 py-3 text-right font-semibold">$150.00</td></tr>
+                <tr><td className="px-4 py-3">Retailer license fee - Traditional Lottery</td><td className="px-4 py-3 text-right font-semibold">$150.00</td></tr>
                 <tr><td className="px-4 py-3">Add-on: Keno endorsement</td><td className="px-4 py-3 text-right font-semibold">$50.00</td></tr>
                 <tr><td className="px-4 py-3 text-muted-foreground">Convenience fee (3%)</td><td className="px-4 py-3 text-right text-muted-foreground">$8.25</td></tr>
               </tbody>

@@ -16,9 +16,9 @@ export function PublicHeader() {
   const [open, setOpen] = useState(false);
   const [mega, setMega] = useState(false);
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur-xl">
       <div className="border-b border-border/60 bg-primary text-primary-foreground">
-        <div className="container-page flex h-9 items-center justify-between text-xs">
+        <div className="container-page flex h-9 items-center justify-between text-[11px]">
           <span className="opacity-90">Official site of the Georgia Lottery Corporation</span>
           <div className="hidden gap-4 sm:flex">
             <Link to="/auth/login" className="hover:underline">Sign in</Link>
@@ -26,14 +26,14 @@ export function PublicHeader() {
           </div>
         </div>
       </div>
-      <div className="container-page flex h-18 items-center justify-between gap-6 py-3">
+      <div className="container-page flex h-14 items-center justify-between gap-6 px-4 lg:px-6">
         <Link to="/" className="flex items-center gap-3">
           <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary text-primary-foreground font-display font-black">
             GLC
           </div>
           <div className="min-w-0 leading-tight">
-            <div className="font-display text-[15px] font-bold text-foreground">Georgia Lottery</div>
-            <div className="text-[11px] uppercase tracking-wider text-muted-foreground">Retailer Licensing Portal</div>
+            <div className="text-sm font-semibold text-foreground">Georgia Lottery</div>
+            <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Retailer Licensing Portal</div>
           </div>
         </Link>
 
@@ -72,7 +72,7 @@ export function PublicHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <ThemeToggle />
+          <ThemeToggle compact />
           <button aria-label="Search" className="hidden h-10 w-10 place-items-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground md:grid">
             <Search className="h-5 w-5" />
           </button>

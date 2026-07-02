@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Search, ChevronDown, HelpCircle } from "lucide-react";
 
 export const Route = createFileRoute("/faq")({
-  head: () => ({ meta: [{ title: "FAQ — Georgia Lottery Retailer Licensing" }, { name: "description", content: "Frequently asked questions about Georgia Lottery retailer licensing." }] }),
+  head: () => ({ meta: [{ title: "FAQ - Georgia Lottery Retailer Licensing" }, { name: "description", content: "Frequently asked questions about Georgia Lottery retailer licensing." }] }),
   component: FAQ,
 });
 
@@ -12,7 +12,7 @@ const categories = ["All", "Eligibility", "Application", "Documents", "Fees", "R
 
 const faqs = [
   { c: "Eligibility", q: "Who can apply for a retailer license?", a: "Any business with a physical location in Georgia, an active business license, and ownership where all officers are 21 or older may apply." },
-  { c: "Application", q: "How long does the application take?", a: "Most applications can be completed in 30–45 minutes. You can save progress and return at any time." },
+  { c: "Application", q: "How long does the application take?", a: "Most applications can be completed in 30-45 minutes. You can save progress and return at any time." },
   { c: "Application", q: "Can I save and continue later?", a: "Yes. Every step auto-saves. Sign back in to continue exactly where you left off." },
   { c: "Documents", q: "What documents are required?", a: "Business license, federal tax ID documentation, photo ID for each listed owner, and proof of premises lease or ownership." },
   { c: "Fees", q: "What are the licensing fees?", a: "Fees vary by retailer category. The 2026 fee schedule is available in the Documents Library." },

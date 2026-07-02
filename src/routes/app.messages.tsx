@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Search, Paperclip, Send, CheckCheck, ShieldCheck } from "lucide-react";
 
 export const Route = createFileRoute("/app/messages")({
-  head: () => ({ meta: [{ title: "Messages — GLC" }] }),
+  head: () => ({ meta: [{ title: "Messages - GLC" }] }),
   component: MessagesPage,
 });
 
@@ -17,10 +17,10 @@ const threads = [
 ];
 
 const msgs = [
-  { from: "them", who: "Reviewer #214", t: "Hi James — could you confirm the effective date on the surety bond you uploaded? The scan is a little dark on page 2.", time: "9:52 AM" },
-  { from: "me",   who: "You", t: "Hi — effective date is July 1, 2026 for 12 months. I'll re-upload a clearer copy today.", time: "10:04 AM", read: true },
+  { from: "them", who: "Reviewer #214", t: "Hi James - could you confirm the effective date on the surety bond you uploaded? The scan is a little dark on page 2.", time: "9:52 AM" },
+  { from: "me",   who: "You", t: "Hi - effective date is July 1, 2026 for 12 months. I'll re-upload a clearer copy today.", time: "10:04 AM", read: true },
   { from: "them", who: "Reviewer #214", t: "Perfect, thanks. Once uploaded I'll approve the document and move you to the payment stage.", time: "10:11 AM" },
-  { from: "them", who: "Reviewer #214", t: "One more thing — please attach the endorsement rider if you added Keno coverage.", time: "10:12 AM" },
+  { from: "them", who: "Reviewer #214", t: "One more thing - please attach the endorsement rider if you added Keno coverage.", time: "10:12 AM" },
 ];
 
 function MessagesPage() {

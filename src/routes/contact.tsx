@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Phone, Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({ meta: [{ title: "Contact — GLC Retailer Licensing" }, { name: "description", content: "Contact the Georgia Lottery Corporation licensing team." }] }),
+  head: () => ({ meta: [{ title: "Contact - GLC Retailer Licensing" }, { name: "description", content: "Contact the Georgia Lottery Corporation licensing team." }] }),
   component: Contact,
 });
 
@@ -26,7 +26,7 @@ function Contact() {
             { i: Phone, t: "Phone", v: "(404) 215-5000" },
             { i: Mail, t: "Email", v: "licensing@galottery.org" },
             { i: MapPin, t: "Headquarters", v: "250 Williams Street NW, Atlanta, GA 30303" },
-            { i: Clock, t: "Business Hours", v: "Monday–Friday • 8:00 AM – 5:00 PM ET" },
+            { i: Clock, t: "Business Hours", v: "Monday-Friday • 8:00 AM - 5:00 PM ET" },
           ].map((c) => (
             <div key={c.t} className="gov-card flex items-start gap-4 p-5">
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-primary/10 text-primary"><c.i className="h-5 w-5" /></span>

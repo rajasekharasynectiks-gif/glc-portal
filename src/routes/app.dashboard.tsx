@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 export const Route = createFileRoute("/app/dashboard")({
-  head: () => ({ meta: [{ title: "Dashboard — GLC Retailer Portal" }] }),
+  head: () => ({ meta: [{ title: "Dashboard - GLC Retailer Portal" }] }),
   component: Dashboard,
 });
 
@@ -28,7 +28,7 @@ function Dashboard() {
               <Chip tone="muted">Submitted Jun 30, 2026</Chip>
             </div>
             <h2 className="mt-2 font-display text-2xl font-bold">Acme Convenience LLC</h2>
-            <p className="mt-1 text-sm text-muted-foreground">Assigned to Reviewer #214 · Est. completion Jul 08–15, 2026</p>
+            <p className="mt-1 text-sm text-muted-foreground">Assigned to Reviewer #214 · Est. completion Jul 08-15, 2026</p>
           </div>
           <div className="text-right">
             {/* progress ring */}

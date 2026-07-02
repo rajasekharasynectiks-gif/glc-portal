@@ -5,7 +5,7 @@ import { useState } from "react";
 import { CloudUpload, ShieldCheck, Lock, FileText, Eye, RefreshCw, Trash2, CheckCircle2, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/app/payments/eft")({
-  head: () => ({ meta: [{ title: "EFT Documents — GLC" }] }),
+  head: () => ({ meta: [{ title: "EFT Documents - GLC" }] }),
   component: EftPage,
 });
 

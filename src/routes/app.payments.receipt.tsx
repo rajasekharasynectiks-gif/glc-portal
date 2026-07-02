@@ -4,7 +4,7 @@ import { Breadcrumb, Chip } from "@/components/public-shell";
 import { Download, Printer, Mail, CheckCircle2, QrCode } from "lucide-react";
 
 export const Route = createFileRoute("/app/payments/receipt")({
-  head: () => ({ meta: [{ title: "Payment Receipt — GLC" }] }),
+  head: () => ({ meta: [{ title: "Payment Receipt - GLC" }] }),
   component: ReceiptPage,
 });
 
@@ -55,7 +55,7 @@ function ReceiptPage() {
               </thead>
               <tbody className="divide-y divide-border">
                 <tr><td className="py-3">Application fee</td><td className="py-3 text-right font-semibold">$75.00</td></tr>
-                <tr><td className="py-3">Retailer license fee — Traditional Lottery</td><td className="py-3 text-right font-semibold">$150.00</td></tr>
+                <tr><td className="py-3">Retailer license fee - Traditional Lottery</td><td className="py-3 text-right font-semibold">$150.00</td></tr>
                 <tr><td className="py-3">Add-on: Keno endorsement</td><td className="py-3 text-right font-semibold">$50.00</td></tr>
                 <tr><td className="py-3 text-muted-foreground">Convenience fee</td><td className="py-3 text-right text-muted-foreground">$8.25</td></tr>
               </tbody>

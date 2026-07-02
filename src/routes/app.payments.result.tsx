@@ -6,7 +6,7 @@ import { CheckCircle2, XCircle, Clock, AlertTriangle, Download, LifeBuoy, Refres
 type Status = "approved" | "pending" | "failed" | "declined" | "cancelled" | "duplicate" | "timeout" | "processing";
 
 export const Route = createFileRoute("/app/payments/result")({
-  head: () => ({ meta: [{ title: "Payment Result — GLC" }] }),
+  head: () => ({ meta: [{ title: "Payment Result - GLC" }] }),
   validateSearch: (s: Record<string, unknown>): { status?: Status } => ({ status: (s.status as Status) ?? "approved" }),
   component: ResultPage,
 });

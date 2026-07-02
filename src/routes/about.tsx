@@ -3,7 +3,7 @@ import { PublicShell, Breadcrumb } from "@/components/public-shell";
 import { Target, Eye, Building2, ShieldCheck, Scale, BookOpen } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({ meta: [{ title: "About — Georgia Lottery Corporation" }, { name: "description", content: "Mission, vision, history, and compliance information for the Georgia Lottery Corporation." }] }),
+  head: () => ({ meta: [{ title: "About - Georgia Lottery Corporation" }, { name: "description", content: "Mission, vision, history, and compliance information for the Georgia Lottery Corporation." }] }),
   component: About,
 });
 
@@ -14,7 +14,7 @@ function About() {
         <div className="container-page py-14">
           <Breadcrumb items={[{ label: "Home", to: "/" }, { label: "About" }]} />
           <h1 className="mt-3 font-display text-4xl font-bold sm:text-5xl">About the Georgia Lottery</h1>
-          <p className="mt-3 max-w-2xl text-muted-foreground">Since 1993, the Georgia Lottery has raised over $27 billion for education — funding HOPE Scholarships and Georgia's Pre-K Program.</p>
+          <p className="mt-3 max-w-2xl text-muted-foreground">Since 1993, the Georgia Lottery has raised over $27 billion for education - funding HOPE Scholarships and Georgia's Pre-K Program.</p>
         </div>
       </section>
 

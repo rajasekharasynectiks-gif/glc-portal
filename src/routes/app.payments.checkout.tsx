@@ -5,7 +5,7 @@ import { useState } from "react";
 import { CreditCard, Landmark, Lock, ShieldCheck, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/app/payments/checkout")({
-  head: () => ({ meta: [{ title: "Secure Checkout — GLC" }] }),
+  head: () => ({ meta: [{ title: "Secure Checkout - GLC" }] }),
   component: CheckoutPage,
 });
 

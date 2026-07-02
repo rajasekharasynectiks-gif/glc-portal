@@ -50,7 +50,7 @@ function Home() {
               {[
                 { v: "9,400+", l: "Licensed retailers" },
                 { v: "98.6%", l: "Application uptime" },
-                { v: "5–7 days", l: "Avg. review time" },
+                { v: "5-7 days", l: "Avg. review time" },
               ].map((s) => (
                 <div key={s.l}>
                   <dt className="font-display text-2xl font-bold text-gold sm:text-3xl">{s.v}</dt>
@@ -126,7 +126,7 @@ function Home() {
           <div>
             <div className="text-xs font-semibold uppercase tracking-wider text-primary">Retailer Licensing</div>
             <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">A modern licensing experience for Georgia businesses.</h2>
-            <p className="mt-4 text-muted-foreground">The Georgia Lottery Retailer Licensing System lets eligible businesses apply, upload supporting documentation, pay applicable fees, and receive their license — all through one secure portal.</p>
+            <p className="mt-4 text-muted-foreground">The Georgia Lottery Retailer Licensing System lets eligible businesses apply, upload supporting documentation, pay applicable fees, and receive their license - all through one secure portal.</p>
             <div className="mt-6 space-y-3">
               {[
                 "Save your progress and resume any time",
@@ -191,7 +191,7 @@ function Home() {
           {[
             { i: TrendingUp, t: "Grow Your Revenue", d: "Lottery retailers receive commission on every ticket sold plus bonus incentives for winning ticket sales." },
             { i: Users, t: "Increase Foot Traffic", d: "Lottery players visit retail locations multiple times per week, driving incremental in-store purchases." },
-            { i: Award, t: "Community Impact", d: "Proceeds fund HOPE Scholarships and Georgia Pre-K — your business helps power education." },
+            { i: Award, t: "Community Impact", d: "Proceeds fund HOPE Scholarships and Georgia Pre-K - your business helps power education." },
           ].map((b) => (
             <div key={b.t} className="gov-card p-7">
               <span className="grid h-12 w-12 place-items-center rounded-lg" style={{ background: "var(--gradient-gold)" }}>
@@ -217,7 +217,7 @@ function Home() {
           <div className="space-y-4">
             {[
               { d: "Jun 24, 2026", t: "2026 Licensing fee schedule published", c: "The updated retailer fee structure for fiscal year 2026 is now available in the Documents Library." },
-              { d: "Jun 12, 2026", t: "Scheduled maintenance: July 4 weekend", c: "The portal will be unavailable from 2 AM – 6 AM ET on Saturday, July 4 for routine upgrades." },
+              { d: "Jun 12, 2026", t: "Scheduled maintenance: July 4 weekend", c: "The portal will be unavailable from 2 AM - 6 AM ET on Saturday, July 4 for routine upgrades." },
               { d: "May 30, 2026", t: "New owner profile workflow", c: "Owner background verification has been streamlined to reduce average application time by 30%." },
             ].map((a) => (
               <article key={a.t} className="gov-card flex gap-5 p-5">
@@ -270,7 +270,7 @@ function Home() {
       {/* Contact info strip */}
       <section className="container-page grid gap-4 pb-24 md:grid-cols-3">
         {[
-          { i: Phone, t: "Call us", d: "(404) 215-5000", s: "Mon–Fri • 8am–5pm ET" },
+          { i: Phone, t: "Call us", d: "(404) 215-5000", s: "Mon-Fri • 8am-5pm ET" },
           { i: Mail, t: "Email", d: "licensing@galottery.org", s: "Response within 1 business day" },
           { i: MapPin, t: "Headquarters", d: "250 Williams Street NW", s: "Atlanta, GA 30303" },
         ].map((c) => (
