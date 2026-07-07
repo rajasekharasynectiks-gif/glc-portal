@@ -7,7 +7,7 @@ import tsConfigPaths from "vite-tsconfig-paths";
 const srcPath = fileURLToPath(new URL("./src", import.meta.url));
 
 export default defineConfig({
-  base: "/glc-portal/",
+  
   resolve: {
     alias: { "@": srcPath },
     dedupe: [

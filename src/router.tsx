@@ -6,8 +6,6 @@ export const getRouter = () => {
   const queryClient = new QueryClient();
 
   const router = createRouter({
-    // basepath must match the Vite `base` and GitHub Pages subpath
-    basepath: "/glc-portal",
     routeTree,
     context: { queryClient },
     scrollRestoration: true,
