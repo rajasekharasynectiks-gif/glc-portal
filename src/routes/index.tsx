@@ -29,7 +29,7 @@ type Slide = {
   cta: { label: string; to: string; external?: boolean };
   bg: string;
   accent: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{ className?: string; color?: string }>;
 };
 
 const slides: Slide[] = [
