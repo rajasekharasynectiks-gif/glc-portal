@@ -125,7 +125,7 @@ function HeroCarousel() {
               className="absolute -right-6 -top-6 h-32 w-32 rounded-full blur-3xl"
               style={{ background: s.accent, opacity: 0.35 }}
             />
-            <Icon className="relative h-28 w-28" style={{ color: s.accent }} />
+            <Icon className="relative h-28 w-28" color={s.accent} />
           </div>
         </div>
       </div>
