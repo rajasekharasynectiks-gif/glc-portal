@@ -20,7 +20,11 @@ export function PublicHeader() {
       <div className="border-b border-border/60 bg-primary text-primary-foreground">
         <div className="container-page flex h-9 items-center justify-between text-[11px]">
           <span className="opacity-90">Official site of the Georgia Lottery Corporation</span>
-          <div className="hidden gap-4 sm:flex">
+          <div className="hidden items-center gap-4 sm:flex">
+            <a href="https://www.galottery.com/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 hover:underline">
+              ← Back to Georgia Lottery
+            </a>
+            <span className="opacity-40">|</span>
             <Link to="/auth/login" className="hover:underline">Sign in</Link>
             <Link to="/auth/register" className="hover:underline">Create account</Link>
           </div>
