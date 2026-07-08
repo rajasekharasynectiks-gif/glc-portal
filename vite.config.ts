@@ -1,15 +1,20 @@
 import { fileURLToPath } from "node:url";
 import tailwindcss from "@tailwindcss/vite";
 import viteReact from "@vitejs/plugin-react";
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import { defineConfig } from "vite";
-import tsConfigPaths from "vite-tsconfig-paths";
 
 const srcPath = fileURLToPath(new URL("./src", import.meta.url));
 
-export default defineConfig({
-  
+export default defineConfig(({ mode }) => ({
+  // Use /glc-portal/ for local development and / for production
+  base: mode === "production" ? "/" : "/glc-portal/",
+
   resolve: {
-    alias: { "@": srcPath },
+    alias: {
+      "@": srcPath,
+    },
+    tsconfigPaths: true,
     dedupe: [
       "react",
       "react-dom",
@@ -22,12 +27,12 @@ export default defineConfig({
   },
 
   plugins: [
+    TanStackRouterVite(),
     tailwindcss(),
-    tsConfigPaths({ projects: ["./tsconfig.json"] }),
     viteReact(),
   ],
 
   build: {
     outDir: "dist",
   },
-});
+}));

@@ -6,7 +6,6 @@ import {
   MessageSquare, PanelLeftClose, PanelLeftOpen,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-
 const nav = [
   { to: "/app/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/app/applications", label: "My Applications", icon: FileText },
@@ -169,3 +168,4 @@ export function AppShell({ children, title, subtitle, breadcrumb }: {
     </div>
   );
 }
+

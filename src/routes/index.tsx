@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PublicShell, Chip } from "@/components/public-shell";
-import { useEffect, useState } from "react";
 import {
-  ArrowRight, ChevronLeft, ChevronRight, FileText, HelpCircle, Download,
+  ArrowRight, ChevronRight, FileText, HelpCircle, Download,
   LogIn, ExternalLink, Megaphone, AlertCircle, CheckCircle2, Calendar, Wrench,
 } from "lucide-react";
 
@@ -20,157 +19,12 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-/* ---------------- Carousel ---------------- */
-
-type Slide = {
-  eyebrow: string;
-  title: string;
-  desc: string;
-  cta: { label: string; to: string; external?: boolean };
-  bg: string;
-  accent: string;
-  icon: React.ComponentType<{ className?: string; color?: string }>;
-};
-
-const slides: Slide[] = [
-  {
-    eyebrow: "Retailer Licensing Portal",
-    title: "Start your retailer application today",
-    desc: "Follow simple, guided steps to become a licensed Georgia Lottery retailer. Save progress and finish anytime.",
-    cta: { label: "Start Application", to: "/auth/register" },
-    bg: "linear-gradient(115deg, oklch(0.28 0.10 258) 0%, oklch(0.20 0.08 250) 55%, oklch(0.16 0.06 245) 100%)",
-    accent: "oklch(0.82 0.16 82)",
-    icon: FileText,
-  },
-  {
-    eyebrow: "System Updates",
-    title: "Planned maintenance: July 4 weekend",
-    desc: "The portal will be unavailable Saturday, July 4 from 2 AM – 6 AM ET for scheduled infrastructure upgrades.",
-    cta: { label: "View Updates", to: "/faq" },
-    bg: "linear-gradient(115deg, oklch(0.34 0.14 250) 0%, oklch(0.24 0.10 250) 55%, oklch(0.18 0.06 250) 100%)",
-    accent: "oklch(0.78 0.15 75)",
-    icon: Wrench,
-  },
-  {
-    eyebrow: "Key Announcement",
-    title: "2026 licensing fee schedule now published",
-    desc: "Review the updated retailer fee structure and new compliance deadlines effective for FY 2026.",
-    cta: { label: "Read Announcements", to: "/documents" },
-    bg: "linear-gradient(115deg, oklch(0.35 0.16 25) 0%, oklch(0.28 0.14 25) 55%, oklch(0.22 0.10 30) 100%)",
-    accent: "oklch(0.82 0.16 82)",
-    icon: Megaphone,
-  },
-];
-
-function HeroCarousel() {
-  const [i, setI] = useState(0);
-  const [paused, setPaused] = useState(false);
-  useEffect(() => {
-    if (paused) return;
-    const t = setInterval(() => setI((v) => (v + 1) % slides.length), 6500);
-    return () => clearInterval(t);
-  }, [paused]);
-  const s = slides[i];
-  const Icon = s.icon;
-  return (
-    <section
-      aria-roledescription="carousel"
-      aria-label="Featured announcements"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      className="relative overflow-hidden text-white"
-      style={{ background: s.bg, transition: "background 700ms ease" }}
-    >
-      <div
-        className="absolute inset-0 opacity-[0.10] pointer-events-none"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 15% 30%, white 1.2px, transparent 1.2px), radial-gradient(circle at 75% 70%, white 1px, transparent 1px)",
-          backgroundSize: "80px 80px, 120px 120px",
-        }}
-      />
-      <div className="container-page relative grid gap-10 py-14 lg:grid-cols-12 lg:py-20">
-        <div className="lg:col-span-7">
-          <div
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider backdrop-blur"
-            style={{ color: s.accent }}
-          >
-            <span className="h-1.5 w-1.5 rounded-full" style={{ background: s.accent }} />
-            {s.eyebrow}
-          </div>
-          <h1 className="mt-5 font-display text-3xl font-bold leading-[1.08] sm:text-4xl lg:text-5xl">
-            {s.title}
-          </h1>
-          <p className="mt-4 max-w-xl text-sm text-white/85 sm:text-base">{s.desc}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link
-              to={s.cta.to}
-              className="inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-semibold shadow-lifted transition-transform hover:-translate-y-0.5"
-              style={{ background: s.accent, color: "oklch(0.2 0.05 60)" }}
-            >
-              {s.cta.label} <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/auth/login"
-              className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-white/5 px-5 py-3 text-sm font-semibold backdrop-blur hover:bg-white/10"
-            >
-              <LogIn className="h-4 w-4" /> Sign in
-            </Link>
-          </div>
-        </div>
-
-        <div className="hidden lg:col-span-5 lg:block">
-          <div className="relative mx-auto grid aspect-[4/3] w-full max-w-md place-items-center rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-xl shadow-lifted">
-            <div
-              className="absolute -right-6 -top-6 h-32 w-32 rounded-full blur-3xl"
-              style={{ background: s.accent, opacity: 0.35 }}
-            />
-            <Icon className="relative h-28 w-28" color={s.accent} />
-          </div>
-        </div>
-      </div>
-
-      {/* Controls */}
-      <div className="container-page relative flex items-center justify-between gap-4 pb-6">
-        <div className="flex items-center gap-2" role="tablist" aria-label="Slides">
-          {slides.map((sl, idx) => (
-            <button
-              key={idx}
-              role="tab"
-              aria-selected={idx === i}
-              aria-label={`Go to slide ${idx + 1}: ${sl.title}`}
-              onClick={() => setI(idx)}
-              className={`h-1.5 rounded-full transition-all ${idx === i ? "w-8 bg-white" : "w-3 bg-white/40 hover:bg-white/60"}`}
-            />
-          ))}
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            aria-label="Previous slide"
-            onClick={() => setI((v) => (v - 1 + slides.length) % slides.length)}
-            className="grid h-9 w-9 place-items-center rounded-md border border-white/25 bg-white/5 text-white hover:bg-white/10"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-          <button
-            aria-label="Next slide"
-            onClick={() => setI((v) => (v + 1) % slides.length)}
-            className="grid h-9 w-9 place-items-center rounded-md border border-white/25 bg-white/5 text-white hover:bg-white/10"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ---------------- Page ---------------- */
 
 function Home() {
   return (
     <PublicShell>
-      <HeroCarousel />
+      {/* Hero carousel is rendered by PublicHeaderIntegrated (shared background). */}
 
       {/* Application Instructions */}
       <section className="container-page py-16">

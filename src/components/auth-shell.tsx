@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
+import { forwardRef, InputHTMLAttributes, ReactNode } from "react";
 import { ShieldCheck, Lock, BadgeCheck } from "lucide-react";
 
-export function AuthShell({ children, title, subtitle }: { children: React.ReactNode; title: string; subtitle?: string }) {
+export function AuthShell({ children, title, subtitle }: { children: ReactNode; title: string; subtitle?: string }) {
   return (
     <div className="grid min-h-dvh lg:grid-cols-2">
       <div className="relative hidden flex-col justify-between overflow-hidden p-12 text-primary-foreground lg:flex" style={{ background: "var(--gradient-hero)" }}>
@@ -68,9 +69,10 @@ export function Field({ label, hint, children, id, required }: { label: string; 
   );
 }
 
-export function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
-  return <input {...props} className={`w-full rounded-md border border-input bg-surface px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30 ${props.className ?? ""}`} />;
-}
+export const Input = forwardRef<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>((props, ref) => {
+  return <input ref={ref} {...props} className={`w-full rounded-md border border-input bg-surface px-3.5 py-2.5 text-sm placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30 ${props.className ?? ""}`} />;
+});
+Input.displayName = "Input";
 
 export function PrimaryButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return <button {...props} className={`inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-elegant transition-colors hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-ring/40 ${props.className ?? ""}`} />;

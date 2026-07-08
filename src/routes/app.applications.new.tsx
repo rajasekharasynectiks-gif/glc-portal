@@ -260,7 +260,11 @@ function Stepper({ step, onJump, pct }: { step: number; onJump: (n: number) => v
             return (
               <li key={s.key}>
                 <button
-                  onClick={() => onJump(i)}
+                  type="button"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    onJump(i);
+                  }}
                   className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium transition-all ${
                     state === "active" ? "border-primary bg-primary text-primary-foreground"
                     : state === "done" ? "border-success/30 bg-success/10 text-success"
@@ -293,7 +297,11 @@ function Stepper({ step, onJump, pct }: { step: number; onJump: (n: number) => v
               return (
                 <li key={s.key}>
                   <button
-                    onClick={() => onJump(i)}
+                    type="button"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      onJump(i);
+                    }}
                     className={`group flex w-full items-start gap-3 rounded-lg px-2.5 py-2 text-left transition-all ${
                       state === "active" ? "bg-primary/8 ring-1 ring-primary/20" : "hover:bg-muted"
                     }`}

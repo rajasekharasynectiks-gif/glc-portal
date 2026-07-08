@@ -1,108 +1,218 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, ChevronDown, Search } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { Menu, X, Search, ChevronDown, ShoppingCart } from "lucide-react";
+import Footer from "@/components/Footer";
+import { SignInModal } from "@/components/auth/SignInModal";
+import { HeroCarousel, slides } from "./HeroCarousel/HeroCarousel";
 
-const publicNav = [
+const logoUrl = new URL("../../images/logo.png.png", import.meta.url).href;
+const playersClubUrl = new URL("../../images/iHipe.png", import.meta.url).href;
+
+const PUBLIC_NAV = [
   { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
-  { label: "Licensing", to: "/licensing", mega: true },
+  { label: "Apply for License", to: "/auth/register" },
+  { label: "Renew License", to: "/licensing#renewals" },
+  { label: "Application Status", to: "/app/applications" },
+  { label: "Retailer Resources", to: "/documents" },
   { label: "Documents", to: "/documents" },
   { label: "FAQ", to: "/faq" },
-  { label: "Contact", to: "/contact" },
+  { label: "About Us", to: "/about" },
+  { label: "Contact Us", to: "/contact" },
+  
 ];
 
-export function PublicHeader() {
+function PublicHeaderIntegrated() {
   const [open, setOpen] = useState(false);
-  const [mega, setMega] = useState(false);
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [bgImage, setBgImage] = useState(slides[0].image);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur-xl">
-      <div className="border-b border-border/60 bg-primary text-primary-foreground">
-        <div className="container-page flex h-9 items-center justify-between text-[11px]">
-          <span className="opacity-90">Official site of the Georgia Lottery Corporation</span>
-          <div className="hidden items-center gap-4 sm:flex">
-            <a href="https://www.galottery.com/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 hover:underline">
-              ← Back to Georgia Lottery
-            </a>
-            <span className="opacity-40">|</span>
-            <Link to="/auth/login" className="hover:underline">Sign in</Link>
-            <Link to="/auth/register" className="hover:underline">Create account</Link>
-          </div>
-        </div>
+    <header className="relative z-40">
+      {/* Wrapper that holds utility bar, nav and hero so the background can extend behind all three */}
+      <div className="relative">
+        {/* Background layer (will be shared by utility bar and hero) */}
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-700 z-0"
+          style={{ backgroundImage: `url(${bgImage})` }}
+        />
+        {/* subtle overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent pointer-events-none z-0" />
+
+        {/* Top utility bar */}
+        {/* Top utility bar */}
+<div className="relative bg-[linear-gradient(180deg,#1d1714_0%,#0b0b0b_100%)] text-white">
+  <div className="container-page flex h-[46px] items-center px-8">
+
+    <div className="flex-1" />
+
+    <div className="hidden items-center gap-4 lg:flex">
+
+      {/* Latest Results */}
+      <button className="inline-flex h-[42px] items-center gap-2 rounded-sm bg-[#5a87bb] px-5 text-[13px] font-bold tracking-wide text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]">
+        <span>LATEST RESULTS</span>
+        <ChevronDown className="h-3 w-3" />
+      </button>
+
+      {/* Main Links */}
+      <div className="flex items-center gap-6 text-[13px] font-semibold">
+        <a
+          href="https://www.galottery.com/en-us/about-us.html"
+          target="_blank"
+          className="hover:underline whitespace-nowrap"
+        >
+          About Us
+        </a>
+        <a
+          href="https://www.galottery.com/en-us/retailers.html"
+          target="_blank"
+          className="hover:underline whitespace-nowrap"
+        >
+          Retailers
+        </a>
+        <a
+          href="https://www.galottery.com/en-us/coam.html"
+          target="_blank"
+          className="hover:underline whitespace-nowrap"
+        >
+          COAM
+        </a>
+        <a
+          href="https://www.galottery.com/en-us/media-center.html"
+          target="_blank"
+          className="hover:underline whitespace-nowrap"
+        >
+          Press Center
+        </a>
       </div>
-      <div className="container-page flex h-14 items-center justify-between gap-6 px-4 lg:px-6">
-        <Link to="/" className="flex items-center gap-3">
-          <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary text-primary-foreground font-display font-black">
-            GLC
-          </div>
-          <div className="min-w-0 leading-tight">
-            <div className="text-sm font-semibold text-foreground">Georgia Lottery</div>
-            <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Retailer Licensing Portal</div>
-          </div>
+
+      {/* Search */}
+      <button
+        type="button"
+        className="inline-flex items-center gap-2 text-[13px] font-semibold text-white"
+      >
+        <span className="grid h-[38px] w-[38px] place-items-center rounded-full bg-[linear-gradient(180deg,#f0a34b_0%,#d6692d_100%)]">
+          <Search className="h-5 w-5" strokeWidth={2.6} />
+        </span>
+
+        <span>Search</span>
+      </button>
+
+
+{/* Players Club */}
+<img
+  src={playersClubUrl}
+  alt="Players Club"
+  className="h-[48px] w-[48px] object-contain shrink-0"
+/>
+
+      {/* Sign In */}
+      <div className="relative flex flex-col items-center leading-none">
+        <a
+          href="/players/info"
+          className="mb-1 text-[11px] font-semibold whitespace-nowrap"
+        >
+          What is Players Club?
+        </a>
+
+        <button
+          type="button"
+          onClick={() => setIsSignInOpen(true)}
+          className="inline-flex h-[38px] w-[120px] items-center justify-center rounded-sm bg-[#5f8f3e] text-[15px] font-bold uppercase tracking-wide text-white"
+        >
+          SIGN IN
+        </button>
+
+        <SignInModal
+          open={isSignInOpen}
+          onClose={() => setIsSignInOpen(false)}
+        />
+      </div>
+
+      {/* Register */}
+      <div className="flex flex-col items-center leading-none">
+        <span className="mb-1 text-[11px] font-semibold whitespace-nowrap">
+          Don't have an account yet?
+        </span>
+
+        <Link
+          to="/auth/register"
+          className="inline-flex h-[38px] w-[120px] items-center justify-center rounded-sm bg-[#537fb0] text-[15px] font-bold uppercase tracking-wide text-white"
+        >
+          REGISTER
         </Link>
+      </div>
 
-        <nav className="hidden items-center gap-1 lg:flex">
-          {publicNav.map((n) => (
-            <div key={n.to} className="relative" onMouseEnter={() => n.mega && setMega(true)} onMouseLeave={() => setMega(false)}>
-              <Link
-                to={n.to}
-                activeProps={{ className: "text-primary" }}
-                className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
-              >
-                {n.label}
-                {n.mega && <ChevronDown className="h-3.5 w-3.5" />}
-              </Link>
-              {n.mega && mega && (
-                <div className="absolute left-1/2 top-full z-50 w-[640px] -translate-x-1/2 pt-3">
-                  <div className="gov-card grid grid-cols-2 gap-1 p-3 shadow-lifted">
-                    {[
-                      { t: "Overview", d: "Eligibility & benefits", to: "/licensing" },
-                      { t: "Apply Now", d: "Begin your application", to: "/auth/register" },
-                      { t: "Process", d: "Step-by-step guide", to: "/licensing#process" },
-                      { t: "Fees & Bonds", d: "Pricing and requirements", to: "/licensing#fees" },
-                      { t: "Renewals", d: "Renew an existing license", to: "/auth/login" },
-                      { t: "Compliance", d: "Standards & regulations", to: "/about#compliance" },
-                    ].map((i) => (
-                      <Link key={i.t} to={i.to} className="rounded-lg p-3 transition-colors hover:bg-muted">
-                        <div className="text-sm font-semibold text-foreground">{i.t}</div>
-                        <div className="text-xs text-muted-foreground">{i.d}</div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </nav>
+      {/* Cart */}
+      <a
+        href="/cart"
+        className="relative ml-1 flex items-center text-white"
+        aria-label="Cart"
+      >
+        <ShoppingCart className="h-7 w-7" strokeWidth={2.2} />
 
-        <div className="flex items-center gap-2">
-          <ThemeToggle compact />
-          <button aria-label="Search" className="hidden h-10 w-10 place-items-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground md:grid">
-            <Search className="h-5 w-5" />
-          </button>
-          <Link to="/auth/login" className="hidden rounded-md border border-border px-4 py-2 text-sm font-medium hover:bg-muted md:inline-flex">
-            Sign in
-          </Link>
-          <Link to="/auth/register" className="hidden rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-elegant transition-colors hover:bg-primary-hover md:inline-flex">
-            Apply Now
-          </Link>
-          <button onClick={() => setOpen(!open)} aria-label="Menu" className="grid h-10 w-10 place-items-center rounded-md hover:bg-muted lg:hidden">
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+        <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#c23b3b] text-[9px] font-bold">
+          0
+        </span>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+        {/* Main navigation strip: solid white bar, sits above background */}
+        <div className="relative bg-white border-b border-border">
+          <div className="container-page flex items-center h-[68px] px-8 overflow-visible">
+            <Link to="/" className="flex items-center gap-4 shrink-0 -mt-6 md:-mt-5 lg:-mt-5">
+              <img
+                src={logoUrl}
+                alt="Georgia Lottery logo"
+                className="block h-[99px] w-auto object-contain md:h-[96px] lg:h-[104px]"
+              />
+            </Link>
+
+            <nav className="ml-4 hidden lg:flex items-center h-full">
+              <ul className="flex items-center gap-7">
+                {PUBLIC_NAV.map((n, index) => (
+                  <li key={`${n.label}-${n.to}-${index}`}>
+                    <Link to={n.to} className="text-[16px] font-semibold text-slate-900 hover:text-primary whitespace-nowrap">
+                      {n.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+
+
+            {/* Mobile menu toggle */}
+            <button onClick={() => setOpen(!open)} aria-label="Menu" className="ml-auto lg:hidden grid h-10 w-10 place-items-center rounded-md text-slate-900">
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+
+        {/* thin orange divider line like GA Lottery */}
+        <div className="h-1 bg-[#EE7B2D]" />
+
+        {/* Hero slider area (transparent background; actual background is the absolute layer) */}
+        <div className="relative w-full" style={{ ['--hero-height' as any]: '540px' }}>
+          {/* Render the carousel; it will occupy the hero height so no extra spacer is required */}
+          <HeroCarousel showContent={false} onActiveChange={(img) => setBgImage(img)} showSlides={true} />
         </div>
       </div>
 
+      {/* Mobile nav drawer placed directly under nav */}
       {open && (
-        <div className="border-t border-border bg-card lg:hidden">
-          <div className="container-page flex flex-col gap-1 py-3">
-            {publicNav.map((n) => (
-              <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="rounded-md px-3 py-2.5 text-sm font-medium hover:bg-muted">
+        <div className="lg:hidden border-t border-border bg-white">
+          <div className="container-page flex flex-col gap-2 py-3">
+            {PUBLIC_NAV.map((n, index) => (
+              <Link key={`${n.label}-${n.to}-${index}`} to={n.to} onClick={() => setOpen(false)} className="px-3 py-2 text-sm font-medium hover:bg-muted">
                 {n.label}
               </Link>
             ))}
-            <div className="mt-2 grid grid-cols-2 gap-2">
-              <Link to="/auth/login" onClick={() => setOpen(false)} className="rounded-md border border-border px-4 py-2 text-center text-sm font-medium">Sign in</Link>
-              <Link to="/auth/register" onClick={() => setOpen(false)} className="rounded-md bg-primary px-4 py-2 text-center text-sm font-semibold text-primary-foreground">Apply</Link>
+            <div className="flex gap-2">
+              <button type="button" onClick={() => { setOpen(false); setIsSignInOpen(true); }} className="rounded-md border border-border px-4 py-2 text-sm">Sign in</button>
+              <Link to="/auth/register" className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground">Register</Link>
             </div>
           </div>
         </div>
@@ -111,57 +221,12 @@ export function PublicHeader() {
   );
 }
 
-export function PublicFooter() {
-  return (
-    <footer className="mt-24 border-t border-border bg-surface-muted">
-      <div className="container-page py-14">
-        <div className="grid gap-10 lg:grid-cols-4">
-          <div>
-            <div className="flex items-center gap-3">
-              <div className="grid h-11 w-11 place-items-center rounded-lg bg-primary text-primary-foreground font-display font-black">GLC</div>
-              <div>
-                <div className="font-display font-bold">Georgia Lottery</div>
-                <div className="text-xs text-muted-foreground">Retailer Licensing Portal</div>
-              </div>
-            </div>
-            <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              The official online application system for Georgia Lottery retailer licensing, operated by the Georgia Lottery Corporation.
-            </p>
-          </div>
-          {[
-            { t: "Licensing", l: [["Overview","/licensing"],["Apply Now","/auth/register"],["Renewals","/auth/login"],["Fees & Bonds","/licensing#fees"]] },
-            { t: "Resources", l: [["Documents","/documents"],["FAQ","/faq"],["Application Guides","/documents"],["Policies","/documents"]] },
-            { t: "Corporate", l: [["About GLC","/about"],["Compliance","/about#compliance"],["Contact","/contact"],["Accessibility","/about"]] },
-          ].map((c) => (
-            <div key={c.t}>
-              <div className="text-sm font-semibold text-foreground">{c.t}</div>
-              <ul className="mt-4 space-y-2.5">
-                {c.l.map(([t, to]) => (
-                  <li key={t}><Link to={to} className="text-sm text-muted-foreground hover:text-foreground">{t}</Link></li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
-          <div>© {new Date().getFullYear()} Georgia Lottery Corporation. All rights reserved.</div>
-          <div className="flex gap-5">
-            <Link to="/about">Privacy</Link>
-            <Link to="/about">Terms</Link>
-            <Link to="/about">Accessibility</Link>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 export function PublicShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col">
-      <PublicHeader />
+      <PublicHeaderIntegrated />
       <main className="flex-1">{children}</main>
-      <PublicFooter />
+      <Footer />
     </div>
   );
 }
